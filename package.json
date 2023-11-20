@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/EM-90/Semester-Project-2-AuctionHouse#readme",
   "dependencies": {
-    "bootstrap": "^5.3.2"
+    "bootstrap": "^5.2.3"
   }
 }
