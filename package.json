@@ -1,0 +1,22 @@
+{
+  "name": "semester-project-2-auctionhouse",
+  "version": "1.0.0",
+  "description": "This is a Auction site where you can bid on items or put your items up for auction. This is my semester project at Noroff",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EM-90/Semester-Project-2-AuctionHouse.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EM-90/Semester-Project-2-AuctionHouse/issues"
+  },
+  "homepage": "https://github.com/EM-90/Semester-Project-2-AuctionHouse#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.2"
+  }
+}
