@@ -4,7 +4,9 @@
   "description": "This is a Auction site where you can bid on items or put your items up for auction. This is my semester project at Noroff",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "sass src/scss:dist/css",
+    "watch": "sass --watch src/scss:dist/css"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,7 @@
   },
   "homepage": "https://github.com/EM-90/Semester-Project-2-AuctionHouse#readme",
   "dependencies": {
-    "bootstrap": "^5.2.3"
+    "bootstrap": "^5.2.3",
+    "sass": "^1.69.5"
   }
 }
