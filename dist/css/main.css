@@ -10719,5 +10719,8 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.card-img-top {
+  max-height: 14rem;
+}
 
 /*# sourceMappingURL=main.css.map */
