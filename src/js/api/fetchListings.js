@@ -1,15 +1,13 @@
 import { displayListings } from "../UI/displayListings.js";
+import { listingsUrl } from "./urls/all-urls.js";
 
 export async function fetchListings() {
   try {
-    const response = await fetch(
-      "https://api.noroff.dev/api/v1/auction/listings"
-    );
+    const response = await fetch(listingsUrl);
     const apiResults = await response.json();
 
     if (response.ok) {
       apiResults.forEach((listing) => {
-        console.log(listing);
         const defaultImage = "images/image-987-svgrepo-com.png";
         const imageUrl =
           listing.media && listing.media.length > 0
@@ -31,5 +29,3 @@ export async function fetchListings() {
     console.log("Error", error);
   }
 }
-
-fetchListings();
