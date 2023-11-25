@@ -16,6 +16,7 @@ export async function loginUser(profile) {
 
       storage.save("token", accessToken);
       storage.save("profile", userDetails);
+      console.log(profile);
 
       return { ok: response.ok, accessToken, userDetails };
     } else {
