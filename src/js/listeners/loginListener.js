@@ -1,4 +1,5 @@
 import { loginSuccess } from "../UI/displayMessages.js";
+import { checkValidation } from "../UI/navtoggle.js";
 import { loginUser } from "../api/auth/login.js";
 
 export function loginlistener() {
@@ -14,6 +15,7 @@ export function loginlistener() {
     try {
       const response = await loginUser(profile);
       if (response.ok) {
+        checkValidation();
         const loginmModal = bootstrap.Modal.getOrCreateInstance("#loginModal");
         loginmModal.hide();
         loginSuccess();
