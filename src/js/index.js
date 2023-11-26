@@ -1,8 +1,13 @@
+import { checkValidation } from "./UI/navtoggle.js";
 import { fetchListings } from "./api/fetchListings.js";
 import { loginlistener } from "./listeners/loginListener.js";
+import { logoutUser } from "./listeners/logoutListener.js";
 import { registerListener } from "./listeners/registerListener.js";
 
-// Fetching all auction items
+document.addEventListener("DOMContentLoaded", function () {
+  checkValidation();
+  logoutUser();
+});
 
 fetchListings();
 
