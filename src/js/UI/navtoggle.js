@@ -22,28 +22,61 @@
 
 export function checkValidation() {
   const accessToken = localStorage.getItem("token");
+  const navContainer = document.querySelector(".navbar-nav.ms-auto");
+
+  navContainer.innerHTML = "";
 
   if (accessToken) {
+    //Profile list item and anchor tag
     const profileLi = document.createElement("li");
     profileLi.className = "nav-item";
 
     const profileAnchorTag = document.createElement("a");
     profileAnchorTag.className = "nav-link";
     profileAnchorTag.textContent = "Profile";
+    profileAnchorTag.href = "#";
 
+    profileLi.appendChild(profileAnchorTag);
+    //Logout list item and anchor tag
     const logoutLi = document.createElement("li");
     logoutLi.className = "nav-item";
 
     const logoutAnchorTag = document.createElement("a");
     logoutAnchorTag.className = "nav-link";
+    logoutAnchorTag.id = "logout";
     logoutAnchorTag.textContent = "Logout";
+    logoutAnchorTag.href = "#";
 
-    const navContainer = document
-      .querySelector("navbar-nav ms-auto")
-      (navContainer)
-      .appendChild(profileLi);
-    profileLi.appendChild(profileAnchorTag);
     logoutLi.appendChild(logoutAnchorTag);
+
+    navContainer.appendChild(profileLi);
+    navContainer.appendChild(logoutLi);
   } else {
+    // Login list items and anchor tag
+    const loginLi = document.createElement("li");
+    loginLi.className = "nav-item";
+    loginLi.setAttribute("data-bs-toggle", "modal");
+    loginLi.setAttribute("data-bs-target", "#loginModal");
+
+    const loginAnchor = document.createElement("a");
+    loginAnchor.className = "nav-link";
+    loginAnchor.href = "#";
+    loginAnchor.textContent = "Login";
+    loginLi.appendChild(loginAnchor);
+
+    // Register list items and anchor tag
+    const registerLi = document.createElement("li");
+    registerLi.className = "nav-item";
+    registerLi.setAttribute("data-bs-toggle", "modal");
+    registerLi.setAttribute("data-bs-target", "#registerModal");
+
+    const registerAnchor = document.createElement("a");
+    registerAnchor.className = "nav-link";
+    registerAnchor.href = "#";
+    registerAnchor.textContent = "Register";
+    registerLi.appendChild(registerAnchor);
+
+    navContainer.appendChild(loginLi);
+    navContainer.appendChild(registerLi);
   }
 }
