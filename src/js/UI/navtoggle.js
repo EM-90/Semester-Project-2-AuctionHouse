@@ -27,12 +27,24 @@ export function checkValidation() {
   navContainer.innerHTML = "";
 
   if (accessToken) {
+    const allAuctionsLi = document.createElement("li");
+    allAuctionsLi.className = "nav-item";
+
+    const allAuctionsAnchorTag = document.createElement("a");
+    allAuctionsAnchorTag.className = "nav-link";
+    allAuctionsAnchorTag.id = "mainPageLink";
+    allAuctionsAnchorTag.textContent = "All auctions";
+    allAuctionsAnchorTag.href = "#";
+
+    allAuctionsLi.appendChild(allAuctionsAnchorTag);
+
     //Profile list item and anchor tag
     const profileLi = document.createElement("li");
     profileLi.className = "nav-item";
 
     const profileAnchorTag = document.createElement("a");
     profileAnchorTag.className = "nav-link";
+    profileAnchorTag.id = "profileLink";
     profileAnchorTag.textContent = "Profile";
     profileAnchorTag.href = "#";
 
@@ -51,6 +63,7 @@ export function checkValidation() {
 
     navContainer.appendChild(profileLi);
     navContainer.appendChild(logoutLi);
+    navContainer.appendChild(allAuctionsLi);
   } else {
     // Login list items and anchor tag
     const loginLi = document.createElement("li");
