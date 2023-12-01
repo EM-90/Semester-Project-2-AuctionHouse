@@ -68,8 +68,8 @@ export function checkValidation() {
 
     const addItemAnchorTag = document.createElement("a");
     addItemAnchorTag.className = "nav-link";
-    addItemAnchorTag.id = "AddItemId";
-    addItemAnchorTag.textContent = "Add new auction item";
+    addItemAnchorTag.id = "addItemId";
+    addItemAnchorTag.textContent = "Add item";
     addItemAnchorTag.href = "#";
 
     addItemLi.appendChild(addItemAnchorTag);
