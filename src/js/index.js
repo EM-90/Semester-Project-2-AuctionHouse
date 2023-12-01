@@ -6,6 +6,7 @@ import { registerListener } from "./listeners/registerListener.js";
 import { profileListener } from "./listeners/profileListener.js";
 import { displayMainPage } from "./UI/displayMainPage.js";
 import { mainPageListener } from "./listeners/mainPageListener.js";
+import { addItemListener } from "./listeners/additemListener.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   checkValidation();
@@ -13,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
   logoutUser();
   profileListener();
   mainPageListener();
+  addItemListener();
 });
 
 fetchListings();

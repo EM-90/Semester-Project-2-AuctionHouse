@@ -1,7 +1,7 @@
 import * as storage from "../../storage/index.js";
 import { listingsUrl } from "../urls/all-urls.js";
 
-async function createListing(newListingData) {
+export async function createListing(newListingData) {
   try {
     const token = storage.load("token");
     const response = await fetch(listingsUrl, {

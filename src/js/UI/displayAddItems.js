@@ -12,6 +12,8 @@
 export function displayAuctionItem() {
   const mainContentContainer = document.querySelector("#mainContent");
 
+  mainContentContainer.innerHTML = "";
+
   const formContainer = document.createElement("form");
   formContainer.className = "m-3 add-item-form";
   formContainer.method = "post";
@@ -49,6 +51,7 @@ export function displayAuctionItem() {
   endsAtLabel.setAttribute("for", "endsAt");
   endsAtLabel.className = "form-label";
   endsAtLabel.textContent = "Ends At";
+
   const endsAtInput = document.createElement("input");
   endsAtInput.type = "datetime-local";
   endsAtInput.className = "form-control";
@@ -61,6 +64,7 @@ export function displayAuctionItem() {
   tagsLabel.setAttribute("for", "tags");
   tagsLabel.className = "form-label";
   tagsLabel.textContent = "Tags";
+
   const tagsInput = document.createElement("input");
   tagsInput.type = "text";
   tagsInput.className = "form-control";
@@ -73,6 +77,7 @@ export function displayAuctionItem() {
   mediaLabel.setAttribute("for", "media");
   mediaLabel.className = "form-label";
   mediaLabel.textContent = "Media URL";
+
   const mediaInput = document.createElement("input");
   mediaInput.type = "text";
   mediaInput.className = "form-control";
@@ -83,7 +88,7 @@ export function displayAuctionItem() {
   // Submit Button
   const submitButton = document.createElement("button");
   submitButton.type = "submit";
-  submitButton.className = "btn btn-primary";
+  submitButton.className = "btn btn-primary mt-3";
   submitButton.textContent = "Submit";
   formContainer.appendChild(submitButton);
 

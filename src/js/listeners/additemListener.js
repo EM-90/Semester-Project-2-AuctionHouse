@@ -1,7 +1,11 @@
+import { displayAuctionItem } from "../UI/displayAddItems.js";
+import { setupAuctionItemFormListener } from "./addItemFormListener.js";
+
 export function addItemListener() {
   document.body.addEventListener("click", function (event) {
-    if (event.target && event.target.id === "addItemsId") {
-      //here i display the form where the user creats new auction items
+    if (event.target && event.target.id === "addItemId") {
+      displayAuctionItem();
+      setupAuctionItemFormListener();
     }
   });
 }
