@@ -61,6 +61,20 @@ export function checkValidation() {
 
     logoutLi.appendChild(logoutAnchorTag);
 
+    //Add items
+
+    const addItemLi = document.createElement("li");
+    addItemLi.className = "nav-item";
+
+    const addItemAnchorTag = document.createElement("a");
+    addItemAnchorTag.className = "nav-link";
+    addItemAnchorTag.id = "AddItemId";
+    addItemAnchorTag.textContent = "Add new auction item";
+    addItemAnchorTag.href = "#";
+
+    addItemLi.appendChild(addItemAnchorTag);
+
+    navContainer.appendChild(addItemLi);
     navContainer.appendChild(profileLi);
     navContainer.appendChild(logoutLi);
     navContainer.appendChild(allAuctionsLi);

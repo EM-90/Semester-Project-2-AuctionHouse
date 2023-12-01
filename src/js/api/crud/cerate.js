@@ -1,9 +1,10 @@
-import { load } from "../../storage/index.js";
+import * as storage from "../../storage/index.js";
+import { listingsUrl } from "../urls/all-urls.js";
 
 async function createListing(newListingData) {
   try {
     const token = storage.load("token");
-    const response = await fetch("/api/listings", {
+    const response = await fetch(listingsUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
