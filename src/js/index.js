@@ -15,9 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
   profileListener();
   mainPageListener();
   addItemListener();
+  fetchListings();
 });
-
-fetchListings();
 
 const registerForm = document.querySelector("#registerForm");
 if (registerForm) {

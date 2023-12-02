@@ -28,6 +28,7 @@ export function displayAuctionItem() {
   const titleInput = document.createElement("input");
   titleInput.type = "text";
   titleInput.className = "form-control";
+  titleInput.name = "title";
   titleInput.id = "title";
 
   // Description Field
@@ -39,6 +40,7 @@ export function displayAuctionItem() {
   const descriptionInput = document.createElement("input");
   descriptionInput.type = "text";
   descriptionInput.className = "form-control";
+  descriptionInput.name = "description";
   descriptionInput.id = "description";
 
   formContainer.appendChild(titleLabel);
@@ -55,6 +57,7 @@ export function displayAuctionItem() {
   const endsAtInput = document.createElement("input");
   endsAtInput.type = "datetime-local";
   endsAtInput.className = "form-control";
+  endsAtInput.name = "endsAt";
   endsAtInput.id = "endsAt";
   formContainer.appendChild(endsAtLabel);
   formContainer.appendChild(endsAtInput);
@@ -68,6 +71,7 @@ export function displayAuctionItem() {
   const tagsInput = document.createElement("input");
   tagsInput.type = "text";
   tagsInput.className = "form-control";
+  tagsInput.name = "tags";
   tagsInput.id = "tags";
   formContainer.appendChild(tagsLabel);
   formContainer.appendChild(tagsInput);
@@ -81,6 +85,7 @@ export function displayAuctionItem() {
   const mediaInput = document.createElement("input");
   mediaInput.type = "text";
   mediaInput.className = "form-control";
+  mediaInput.name = "madia";
   mediaInput.id = "media";
   formContainer.appendChild(mediaLabel);
   formContainer.appendChild(mediaInput);

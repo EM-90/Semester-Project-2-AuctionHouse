@@ -1,4 +1,5 @@
 import { createListing } from "../api/crud/create.js";
+import { fetchListings } from "../api/fetchListings.js";
 
 export function setupAuctionItemFormListener() {
   const form = document.getElementById("addItemForm");
@@ -8,14 +9,30 @@ export function setupAuctionItemFormListener() {
     event.preventDefault();
 
     const formData = new FormData(form);
-    const newListingData = {
-      title: formData.get("title"),
-      description: formData.get("description"),
-      endsAt: formData.get("endsAt"),
-      tags: formData.get("tags"),
-      media: formData.get("media"),
-    };
-    console.log(titleInput.value);
-    const result = await createListing(newListingData);
+
+    const title = formData.get("title");
+    const description = formData.get("description");
+    const endsAt = formData.get("endsAt");
+    const tags = formData
+      .get("tags")
+      .split(",")
+      .map((tag) => tag.trim())
+      .filter((tag) => tag !== "");
+    const media = formData.get("media");
+
+    console.log("Title:", title);
+    console.log("EndsAt:", endsAt);
+
+    const newListingData = { title, description, endsAt, tags, media };
+
+    try {
+      const result = await createListing(newListingData);
+      if (result) {
+        fetchListings();
+      }
+      // Handle the result
+    } catch (error) {
+      console.error("Error creating listing:", error);
+    }
   });
 }
