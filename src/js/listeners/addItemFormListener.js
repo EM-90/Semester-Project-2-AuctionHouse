@@ -1,4 +1,4 @@
-import { createListing } from "../api/crud/cerate.js";
+import { createListing } from "../api/crud/create.js";
 
 export function setupAuctionItemFormListener() {
   const form = document.getElementById("addItemForm");
@@ -12,11 +12,10 @@ export function setupAuctionItemFormListener() {
       title: formData.get("title"),
       description: formData.get("description"),
       endsAt: formData.get("endsAt"),
-      tags: formData.get("tags").split(","),
+      tags: formData.get("tags"),
       media: formData.get("media"),
     };
-
+    console.log(titleInput.value);
     const result = await createListing(newListingData);
-    console.log("listing creation", result);
   });
 }
