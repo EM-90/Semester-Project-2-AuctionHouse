@@ -51,7 +51,7 @@ export function displayListings(
   cardBody.appendChild(count);
   cardBody.appendChild(cardParagraph);
 
-  document.getElementById("bootstrap-row").appendChild(colDiv);
+  document.getElementById("bootstrapRow").appendChild(colDiv);
 }
 
 /*<div class="row">

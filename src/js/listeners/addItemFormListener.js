@@ -28,7 +28,7 @@ export function setupAuctionItemFormListener() {
     try {
       const result = await createListing(newListingData);
       if (result) {
-        fetchListings();
+        await fetchListings();
       }
       // Handle the result
     } catch (error) {

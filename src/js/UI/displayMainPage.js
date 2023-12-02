@@ -63,8 +63,8 @@ export function displayMainPage() {
 
   mainContentContainer.appendChild(form);
 
-  const rowDiv = document.createElement("div");
-  rowDiv.id = "bootstrap-row";
-  rowDiv.className = "row";
-  mainContentContainer.appendChild(rowDiv);
+  //const rowDiv = document.createElement("div");
+  //rowDiv.id = "bootstrap-row";
+  //rowDiv.className = "row";
+  //mainContentContainer.appendChild(rowDiv);
 }
