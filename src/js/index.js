@@ -7,6 +7,7 @@ import { profileListener } from "./listeners/profileListener.js";
 import { displayMainPage } from "./UI/displayMainPage.js";
 import { mainPageListener } from "./listeners/mainPageListener.js";
 import { addItemListener } from "./listeners/additemListener.js";
+import { filterListings } from "./listeners/filters/listFilter.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   checkValidation();
@@ -16,6 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
   mainPageListener();
   addItemListener();
   fetchListings();
+
+  const searchButton = document.getElementById("searchField");
+  searchButton.addEventListener("change", filterListings);
 });
 
 const registerForm = document.querySelector("#registerForm");

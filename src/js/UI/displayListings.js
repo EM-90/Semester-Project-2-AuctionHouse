@@ -43,7 +43,6 @@ export function displayListings({
 
   cardDiv.appendChild(image);
   cardBody.appendChild(titleEl);
-  console.log(image);
   cardDiv.appendChild(cardBody);
   colDiv.appendChild(cardDiv);
   cardBody.appendChild(createDateEl);

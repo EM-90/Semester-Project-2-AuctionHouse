@@ -35,6 +35,7 @@ export function displayMainPage() {
 
   const input = document.createElement("input");
   input.className = "form-control me-2";
+  input.id = "searchField";
   input.type = "search";
   input.placeholder = "Search";
   input.setAttribute("aria-label", "Search");
@@ -42,6 +43,7 @@ export function displayMainPage() {
 
   const searchButton = document.createElement("button");
   searchButton.className = "btn btn-outline-success";
+  searchButton.id = "searchButton";
   searchButton.type = "submit";
   searchButton.textContent = "Search";
   form.appendChild(searchButton);

@@ -23,7 +23,13 @@ export function setupAuctionItemFormListener() {
     console.log("Title:", title);
     console.log("EndsAt:", endsAt);
 
-    const newListingData = { title, description, endsAt, tags, media };
+    const newListingData = {
+      title,
+      description,
+      endsAt,
+      tags,
+      media: media ? [media] : [],
+    };
 
     try {
       const result = await createListing(newListingData);
