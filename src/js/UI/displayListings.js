@@ -1,13 +1,12 @@
-export function displayListings(
-  titleText,
-  imageSrc,
+export function displayListings({
+  title,
+  imageUrl,
   altText,
-  startDate,
-  endDate,
-  cardText,
-  bids
-) {
-  // Card column using Bootstrap classes
+  auctionStart,
+  auctionEnd,
+  description,
+  bids,
+}) {
   const colDiv = document.createElement("div");
   colDiv.className = "col-lg-4 col-md-6 col-12 pb-2 pt-5";
 
@@ -15,35 +14,36 @@ export function displayListings(
   cardDiv.className = "card";
 
   const image = document.createElement("img");
-  image.src = imageSrc;
+  image.src = imageUrl;
   image.className = "card-img-top";
   image.alt = altText;
 
   const cardBody = document.createElement("div");
   cardBody.className = "card-body";
 
-  const title = document.createElement("h3");
-  title.className = "title";
-  title.textContent = titleText;
+  const titleEl = document.createElement("h3");
+  titleEl.className = "title";
+  titleEl.textContent = title;
 
   const cardParagraph = document.createElement("p");
   cardParagraph.className = "card-text";
-  cardParagraph.textContent = cardText;
+  cardParagraph.textContent = description;
 
   const createDateEl = document.createElement("p");
   createDateEl.className = "created-at";
-  createDateEl.textContent = `Auction start: ${startDate}`;
+  createDateEl.textContent = `Auction start: ${auctionStart}`;
 
   const endDateEl = document.createElement("p");
   endDateEl.className = "ends-at";
-  endDateEl.textContent = `Ends at: ${endDate}`;
+  endDateEl.textContent = `Ends at: ${auctionEnd}`;
 
   const count = document.createElement("p");
   count.className = "bidding-count";
   count.textContent = `bids: ${bids}`;
 
   cardDiv.appendChild(image);
-  cardBody.appendChild(title);
+  cardBody.appendChild(titleEl);
+  console.log(image);
   cardDiv.appendChild(cardBody);
   colDiv.appendChild(cardDiv);
   cardBody.appendChild(createDateEl);
