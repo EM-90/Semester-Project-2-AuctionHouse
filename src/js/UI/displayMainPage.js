@@ -21,6 +21,7 @@
 
 export function displayMainPage() {
   const mainContentContainer = document.getElementById("mainContent");
+  const rowDiv = document.getElementById("bootstrapRow");
 
   mainContentContainer.innerHTML = "";
 
@@ -64,9 +65,5 @@ export function displayMainPage() {
   addButton("bi bi-sort-alpha-up");
 
   mainContentContainer.appendChild(form);
-
-  //const rowDiv = document.createElement("div");
-  //rowDiv.id = "bootstrap-row";
-  //rowDiv.className = "row";
-  //mainContentContainer.appendChild(rowDiv);
+  mainContentContainer.appendChild(rowDiv);
 }

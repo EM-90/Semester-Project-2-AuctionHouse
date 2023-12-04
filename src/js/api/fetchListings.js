@@ -1,35 +1,14 @@
-import { displayListings } from "../UI/displayListings.js";
+import { processListings } from "../UI/processListings.js";
 import { listingsUrl } from "./urls/all-urls.js";
 
-export async function fetchListings() {
+export async function fetchListings(queryParams = "") {
   try {
-    const response = await fetch(listingsUrl);
+    const response = await fetch(`${listingsUrl}${queryParams}`);
     const apiResults = await response.json();
-
     if (response.ok) {
-      const bootstrapRow = document.getElementById("bootstrapRow");
-      bootstrapRow.innerHTML = "";
-
-      apiResults.forEach((listing) => {
-        const defaultImage = "images/image-987-svgrepo-com.png";
-        const imageUrl =
-          listing.media && listing.media.length > 0
-            ? listing.media[0]
-            : defaultImage;
-        const listingObj = {
-          title: listing.title,
-          imageUrl,
-          altText: listing.title,
-          auctionStart: listing.created,
-          auctionEnd: listing.endsAt,
-          description: listing.description,
-          bids: listing._count,
-        };
-
-        displayListings(listingObj);
-      });
+      processListings(apiResults);
     }
   } catch (error) {
-    console.log("Error", error);
+    console.error("Error fetching listings:", error);
   }
 }
