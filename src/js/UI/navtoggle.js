@@ -27,83 +27,42 @@ export function checkValidation() {
   navContainer.innerHTML = "";
 
   if (accessToken) {
-    const allAuctionsLi = document.createElement("li");
-    allAuctionsLi.className = "nav-item";
+    const allAuctionsLi = createNavLink("All auctions", "/", "mainPageLink");
 
-    const allAuctionsAnchorTag = document.createElement("a");
-    allAuctionsAnchorTag.className = "nav-link";
-    allAuctionsAnchorTag.id = "mainPageLink";
-    allAuctionsAnchorTag.textContent = "All auctions";
-    allAuctionsAnchorTag.href = "#";
+    const profileLi = createNavLink("Profile", "/profile", "profileLink");
 
-    allAuctionsLi.appendChild(allAuctionsAnchorTag);
+    const addItemLi = createNavLink("Add item", "/add-item", "addItemId");
 
-    //Profile list item and anchor tag
-    const profileLi = document.createElement("li");
-    profileLi.className = "nav-item";
+    const logoutLi = createNavLink("Logout", "#", "logout");
 
-    const profileAnchorTag = document.createElement("a");
-    profileAnchorTag.className = "nav-link";
-    profileAnchorTag.id = "profileLink";
-    profileAnchorTag.textContent = "Profile";
-    profileAnchorTag.href = "#";
-
-    profileLi.appendChild(profileAnchorTag);
-    //Logout list item and anchor tag
-    const logoutLi = document.createElement("li");
-    logoutLi.className = "nav-item";
-
-    const logoutAnchorTag = document.createElement("a");
-    logoutAnchorTag.className = "nav-link";
-    logoutAnchorTag.id = "logout";
-    logoutAnchorTag.textContent = "Logout";
-    logoutAnchorTag.href = "#";
-
-    logoutLi.appendChild(logoutAnchorTag);
-
-    //Add items
-
-    const addItemLi = document.createElement("li");
-    addItemLi.className = "nav-item";
-
-    const addItemAnchorTag = document.createElement("a");
-    addItemAnchorTag.className = "nav-link";
-    addItemAnchorTag.id = "addItemId";
-    addItemAnchorTag.textContent = "Add item";
-    addItemAnchorTag.href = "#";
-
-    addItemLi.appendChild(addItemAnchorTag);
-
-    navContainer.appendChild(addItemLi);
-    navContainer.appendChild(profileLi);
-    navContainer.appendChild(logoutLi);
-    navContainer.appendChild(allAuctionsLi);
+    navContainer.append(allAuctionsLi, profileLi, addItemLi, logoutLi);
   } else {
-    // Login list items and anchor tag
-    const loginLi = document.createElement("li");
-    loginLi.className = "nav-item";
-    loginLi.setAttribute("data-bs-toggle", "modal");
-    loginLi.setAttribute("data-bs-target", "#loginModal");
+    const loginLi = createNavLink("Login", "#", "login", true);
 
-    const loginAnchor = document.createElement("a");
-    loginAnchor.className = "nav-link";
-    loginAnchor.href = "#";
-    loginAnchor.textContent = "Login";
-    loginLi.appendChild(loginAnchor);
+    const registerLi = createNavLink("Register", "#", "register", true);
 
-    // Register list items and anchor tag
-    const registerLi = document.createElement("li");
-    registerLi.className = "nav-item";
-    registerLi.setAttribute("data-bs-toggle", "modal");
-    registerLi.setAttribute("data-bs-target", "#registerModal");
-
-    const registerAnchor = document.createElement("a");
-    registerAnchor.className = "nav-link";
-    registerAnchor.href = "#";
-    registerAnchor.textContent = "Register";
-    registerLi.appendChild(registerAnchor);
-
-    navContainer.appendChild(loginLi);
-    navContainer.appendChild(registerLi);
+    navContainer.append(loginLi, registerLi);
   }
+}
+
+function createNavLink(text, href, id, isModalLink = false) {
+  const li = document.createElement("li");
+  li.className = "nav-item";
+
+  const a = document.createElement("a");
+  a.className = "nav-link";
+  a.id = id;
+  a.textContent = text;
+
+  if (!isModalLink) {
+    a.href = href;
+    a.setAttribute("data-link", "");
+  } else {
+    a.href = "#";
+    li.setAttribute("data-bs-toggle", "modal");
+    li.setAttribute("data-bs-target", `#${id}Modal`);
+  }
+
+  li.appendChild(a);
+  return li;
 }
