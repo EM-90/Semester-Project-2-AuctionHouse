@@ -27,11 +27,7 @@ export function checkValidation() {
   navContainer.innerHTML = "";
 
   if (accessToken) {
-    const allAuctionsLi = createNavLink(
-      "All auctions",
-      "/public/",
-      "mainPageLink"
-    );
+    const allAuctionsLi = createNavLink("All auctions", "/", "mainPageLink");
 
     const profileLi = createNavLink("Profile", "#/profile", "profileLink");
 
