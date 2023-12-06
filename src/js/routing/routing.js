@@ -1,14 +1,15 @@
 import { initHomePage, initProfilePage, addItemPage } from "../index.js";
 
 export const routes = {
-  "/": initHomePage,
+  "/public/": initHomePage,
   "/profile": initProfilePage,
   "/add-item": addItemPage,
 };
 
 export function router() {
-  const path = window.location.pathname;
-  const route = routes[path] || routes["/"];
+  const hash = window.location.hash || "#";
+  const path = hash.startsWith("#") ? hash.substring(1) : hash;
+  const route = routes[path] || routes["/public/"];
   route();
 }
 
@@ -18,7 +19,8 @@ export function setupRouter() {
   document.addEventListener("click", (event) => {
     if (event.target.matches("[data-link]")) {
       event.preventDefault();
-      history.pushState(null, null, event.target.href);
+      const newHash = event.target.getAttribute("href");
+      window.location.hash = newHash;
       router();
     }
   });
