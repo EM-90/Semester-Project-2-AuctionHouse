@@ -32,6 +32,10 @@ export function displayProfilePage() {
 
   const totalCredits = document.createElement("p");
   totalCredits.className = "credit-display";
+  totalCredits.id = "creditsDisplay";
+  totalCredits.textContent = `Your total credit:${profileData.credits}`;
+
+  mainContentContainer.appendChild(totalCredits);
 
   //dont know where to append this yet
 
@@ -40,9 +44,7 @@ export function displayProfilePage() {
   const myAuctionList = document.createElement("ul");
   myAuctionList.className = "list-group";
 
-  const auctionItems = [
-    /*This is where i am going to put the users auction items*/
-  ];
+  const auctionItems = [];
   auctionItems.forEach((item) => {
     const myAuctionItem = document.createElement("li");
     myAuctionItem.className =
