@@ -24,4 +24,5 @@ export function setupRouter() {
       router();
     }
   });
+  router();
 }
