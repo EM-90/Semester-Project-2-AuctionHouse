@@ -9,6 +9,8 @@ import { displayProfilePage } from "./UI/displayProfile.js";
 import { displayAuctionItem } from "./UI/displayAddItems.js";
 import { setupAuctionItemFormListener } from "./listeners/addItemFormListener.js";
 import { setupRouter } from "./routing/routing.js";
+import { processListings } from "./UI/processListings.js";
+import { displayMultipleItems } from "./UI/displayMultipleItems.js";
 
 // Route Initialization Functions
 
@@ -16,12 +18,26 @@ document.addEventListener("DOMContentLoaded", function () {
   checkValidation();
   logoutUser();
   setupRouter();
-  fetchListings();
 });
 
-export function initHomePage() {
+// had a problem with dobble returns of fetchListings(). So i made an if statment that checks if the route is the same so the function dosent execute two times
+
+let lastRoute = null;
+
+export async function initHomePage() {
+  if (lastRoute === "home") return;
+  lastRoute = "home";
   displayHomePage();
-  fetchListings();
+  try {
+    const listingsData = await fetchListings();
+    console.log(listingsData);
+    const processedListings = await processListings(listingsData);
+
+    displayMultipleItems(processedListings);
+  } catch (error) {
+    console.error("Error initializing home page:", error);
+  }
+
   const searchButton = document.getElementById("searchField");
   if (searchButton) {
     searchButton.addEventListener("change", filterListings);
@@ -31,6 +47,8 @@ export function initHomePage() {
 }
 
 export function initProfilePage() {
+  if (lastRoute === "profile") return;
+  lastRoute = "profile";
   displayProfilePage();
 }
 

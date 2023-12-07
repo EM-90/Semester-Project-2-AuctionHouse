@@ -1,33 +1,27 @@
-import { displayListings } from "../UI/displayListings.js";
+// processListings.js
+import { fetchListings } from "../api/fetchListings.js";
 
-export async function processListings(apiResults) {
+export async function processListings() {
   try {
-    const bootstrapRow = document.getElementById("bootstrapRow");
-    if (!bootstrapRow) {
-      console.error("bootstrapRow not found");
-      return;
-    }
-    bootstrapRow.innerHTML = "";
-
-    apiResults.forEach((listing) => {
+    const apiResults = await fetchListings();
+    return apiResults.map((listing) => {
       const defaultImage = "/public/images/image-987-svgrepo-com.png";
       const imageUrl =
         listing.media && listing.media.length > 0
           ? listing.media[0]
           : defaultImage;
-      const listingObj = {
+      return {
         title: listing.title,
         imageUrl,
-        altText: listing.title,
+        description: listing.description,
         auctionStart: listing.created,
         auctionEnd: listing.endsAt,
-        description: listing.description,
-        bids: listing._count,
+        bids: listing._count ? listing._count.bids : 0,
+        id: listing.id,
       };
-
-      displayListings(listingObj);
     });
   } catch (error) {
-    console.log("Error", error);
+    console.error("Error processing listings:", error);
+    return [];
   }
 }

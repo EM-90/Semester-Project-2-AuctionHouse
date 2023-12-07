@@ -1,3 +1,4 @@
+import { fetchListings } from "../api/fetchListings.js";
 import { load } from "../storage/index.js";
 
 // Container in the html where everything is going to append <div class="container mt-5 pt-5 main-page">
@@ -12,13 +13,14 @@ import { load } from "../storage/index.js";
     </li>
   </ul>*/
 
-export function displayProfilePage() {
+export async function displayProfilePage() {
   const mainContentContainer = document.getElementById("mainContent");
 
   mainContentContainer.innerHTML = "";
 
   const profileImage = document.createElement("img");
   profileImage.className = "profile-image";
+  profileImage.style.backgroundColor = "lightgray";
 
   const profileData = load("profile");
 
@@ -29,6 +31,12 @@ export function displayProfilePage() {
   }
 
   mainContentContainer.appendChild(profileImage);
+
+  const profileName = document.createElement("h4");
+  profileName.className = "profile-name";
+  profileName.textContent = `${profileData.name}`;
+
+  mainContentContainer.appendChild(profileName);
 
   const totalCredits = document.createElement("p");
   totalCredits.className = "credit-display";
@@ -44,18 +52,27 @@ export function displayProfilePage() {
   const myAuctionList = document.createElement("ul");
   myAuctionList.className = "list-group";
 
-  const auctionItems = [];
-  auctionItems.forEach((item) => {
-    const myAuctionItem = document.createElement("li");
-    myAuctionItem.className =
-      "list-group-item d-flex justify-content-between align-items-start";
+  try {
+    const allListings = await fetchListings();
+    console.log("fetched listings:", allListings);
+    const currentUserID = load("id");
+    const userAuctionItems = allListings.filter(
+      (listing) => listing.createdBy === currentUserID
+    );
 
-    const itemContentContainer = document.createElement("div");
-    itemContentContainer.className = "ms-2 me-auto";
-    itemContentContainer.textContent = // description and other text content that i have to populate the item with
+    userAuctionItems.forEach((item) => {
+      const myAuctionItem = document.createElement("li");
+      myAuctionItem.className =
+        "list-group-item d-flex justify-content-between align-items-start";
+
+      const itemContentContainer = document.createElement("div");
+      itemContentContainer.className = "ms-2 me-auto";
+      itemContentContainer.textContent = item.title;
       myAuctionItem.appendChild(itemContentContainer);
-    myAuctionList.appendChild(myAuctionItem);
-  });
-
+      myAuctionList.appendChild(myAuctionItem);
+    });
+  } catch (error) {
+    console.error("Error fetching listings", error);
+  }
   mainContentContainer.appendChild(myAuctionList);
 }

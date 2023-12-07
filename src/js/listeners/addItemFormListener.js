@@ -18,7 +18,7 @@ export function setupAuctionItemFormListener() {
       .split(",")
       .map((tag) => tag.trim())
       .filter((tag) => tag !== "");
-    const media = formData.get("media");
+    const mediaUrl = formData.get("media");
 
     console.log("Title:", title);
     console.log("EndsAt:", endsAt);
@@ -28,7 +28,7 @@ export function setupAuctionItemFormListener() {
       description,
       endsAt,
       tags,
-      media: media ? [media] : [],
+      media: mediaUrl ? [mediaUrl] : [],
     };
 
     try {

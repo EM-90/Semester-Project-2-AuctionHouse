@@ -1,14 +1,16 @@
-import { processListings } from "../UI/processListings.js";
 import { listingsUrl } from "./urls/all-urls.js";
 
 export async function fetchListings(queryParams = "") {
   try {
     const response = await fetch(`${listingsUrl}${queryParams}`);
-    const apiResults = await response.json();
     if (response.ok) {
-      processListings(apiResults);
+      return await response.json();
+    } else {
+      console.error("Error fetching listings: Response was not OK");
+      return [];
     }
   } catch (error) {
     console.error("Error fetching listings:", error);
+    return [];
   }
 }

@@ -1,4 +1,5 @@
 import { initHomePage, initProfilePage, addItemPage } from "../index.js";
+import { loginlistener } from "../listeners/loginListener.js";
 
 export const routes = {
   "/": initHomePage,
@@ -9,7 +10,9 @@ export const routes = {
 export function router() {
   const hash = window.location.hash || "#";
   const path = hash ? hash.substring(1) : "/";
+
   const route = routes[path] || routes["/"];
+
   route();
 }
 
