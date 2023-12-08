@@ -1,4 +1,4 @@
-import { fetchListings } from "../api/fetchListings.js";
+import { fetchUserListings } from "../api/crud/read.js";
 import { load } from "../storage/index.js";
 
 // Container in the html where everything is going to append <div class="container mt-5 pt-5 main-page">
@@ -32,9 +32,13 @@ export async function displayProfilePage() {
 
   mainContentContainer.appendChild(profileImage);
 
-  const profileName = document.createElement("h4");
+  const profileName = document.createElement("h2");
   profileName.className = "profile-name";
   profileName.textContent = `${profileData.name}`;
+
+  const editIcon = document.createElement("i");
+  editIcon.className = "bi bi-pencil-square ms-3";
+  profileName.appendChild(editIcon);
 
   mainContentContainer.appendChild(profileName);
 
@@ -50,29 +54,46 @@ export async function displayProfilePage() {
   // This will be the auction list display
 
   const myAuctionList = document.createElement("ul");
-  myAuctionList.className = "list-group";
+  myAuctionList.className = "list-group mt-5";
 
   try {
-    const allListings = await fetchListings();
-    console.log("fetched listings:", allListings);
-    const currentUserID = load("id");
-    const userAuctionItems = allListings.filter(
-      (listing) => listing.createdBy === currentUserID
-    );
+    // Fetch the user's listings using the username
+    const userAuctionItems = await fetchUserListings(profileData.name);
 
-    userAuctionItems.forEach((item) => {
-      const myAuctionItem = document.createElement("li");
-      myAuctionItem.className =
-        "list-group-item d-flex justify-content-between align-items-start";
+    if (userAuctionItems && userAuctionItems.length > 0) {
+      userAuctionItems.forEach((item) => {
+        const myAuctionItem = document.createElement("li");
+        myAuctionItem.className =
+          "list-group-item d-flex justify-content-between align-items-start";
 
-      const itemContentContainer = document.createElement("div");
-      itemContentContainer.className = "ms-2 me-auto";
-      itemContentContainer.textContent = item.title;
-      myAuctionItem.appendChild(itemContentContainer);
-      myAuctionList.appendChild(myAuctionItem);
-    });
+        const itemContentContainer = document.createElement("div");
+        itemContentContainer.className = "ms-2 me-auto";
+
+        const headingItem = document.createElement("div");
+        headingItem.className = "fw-bold";
+        headingItem.textContent = item.title;
+        itemContentContainer.appendChild(headingItem);
+
+        const descriptionText = document.createTextNode(
+          `Description ${item.description}`
+        );
+        itemContentContainer.appendChild(descriptionText);
+
+        const bidsBadge = document.createElement("span");
+        bidsBadge.className = "badge bg-primary rounded-pill";
+        bidsBadge.textContent = item._count ? item._count.bids : 0;
+        myAuctionItem.appendChild(itemContentContainer);
+        myAuctionItem.appendChild(bidsBadge);
+
+        myAuctionItem.appendChild(itemContentContainer);
+        myAuctionList.appendChild(myAuctionItem);
+      });
+    } else {
+      console.error("Error fetching user's listings");
+    }
   } catch (error) {
     console.error("Error fetching listings", error);
   }
+
   mainContentContainer.appendChild(myAuctionList);
 }

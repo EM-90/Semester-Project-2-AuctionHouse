@@ -30,7 +30,6 @@ export async function initHomePage() {
   displayHomePage();
   try {
     const listingsData = await fetchListings();
-    console.log(listingsData);
     const processedListings = await processListings(listingsData);
 
     displayMultipleItems(processedListings);

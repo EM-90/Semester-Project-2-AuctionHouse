@@ -12,7 +12,8 @@ export async function loginUser(profile) {
     });
 
     if (response.ok) {
-      const { accessToken, ...userDetails } = await response.json();
+      const responseData = await response.json();
+      const { accessToken, ...userDetails } = responseData;
 
       storage.save("token", accessToken);
       storage.save("profile", userDetails);
