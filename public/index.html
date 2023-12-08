@@ -193,6 +193,60 @@
         </div>
       </div>
     </div>
+    <!--Modal for editing profile-->
+    <div
+      class="modal fade"
+      id="editProfileModal"
+      tabindex="-1"
+      aria-labelledby="editProfileLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="editProfileLabel">Edit Profile</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <form method="put" id="editForm">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label for="avatar" class="form-label">Image URL</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="avatar"
+                  name="avatar"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">
+                Update Profile
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
     <!--Main content-->
     <div id="loginMessageContainer"></div>

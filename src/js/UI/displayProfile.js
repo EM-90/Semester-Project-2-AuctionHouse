@@ -38,6 +38,7 @@ export async function displayProfilePage() {
 
   const editIcon = document.createElement("i");
   editIcon.className = "bi bi-pencil-square ms-3";
+  editIcon.id = "editProfile";
   profileName.appendChild(editIcon);
 
   mainContentContainer.appendChild(profileName);

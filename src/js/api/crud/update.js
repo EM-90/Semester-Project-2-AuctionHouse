@@ -1,8 +1,8 @@
 import { load } from "../../storage/index.js";
 
-async function updateListing(listingId, updatedData) {
+export async function updateListing(listingId, updatedData) {
   try {
-    const token = storage.load("token");
+    const token = load("token");
     const response = await fetch(`/api/listings/${listingId}`, {
       method: "PUT",
       headers: {
