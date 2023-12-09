@@ -1,5 +1,6 @@
 import { fetchUserListings } from "../api/crud/read.js";
 import { load } from "../storage/index.js";
+import { updateProfileAvatar } from "../api/crud/update.js";
 
 // Container in the html where everything is going to append <div class="container mt-5 pt-5 main-page">
 
@@ -40,6 +41,16 @@ export async function displayProfilePage() {
   editIcon.className = "bi bi-pencil-square ms-3";
   editIcon.id = "editProfile";
   profileName.appendChild(editIcon);
+
+  const editProfileModal = new bootstrap.Modal(
+    document.getElementById("editProfileModal")
+  );
+
+  editIcon.addEventListener("click", function () {
+    editProfileModal.show();
+  });
+
+  updateProfileAvatar();
 
   mainContentContainer.appendChild(profileName);
 

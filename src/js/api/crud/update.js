@@ -1,4 +1,4 @@
-import { load } from "../../storage/index.js";
+import { load, save } from "../../storage/index.js";
 import { baseUrl } from "../urls/all-urls.js";
 
 export async function update(url, updatedData) {
@@ -20,13 +20,15 @@ export async function update(url, updatedData) {
 
 export function updateProfileAvatar() {
   const editForm = document.getElementById("editForm");
+  const editProfileModal =
+    bootstrap.Modal.getOrCreateInstance("#editProfileModal");
 
   editForm.addEventListener("submit", async function (event) {
     event.preventDefault();
 
     const formData = new FormData(editForm);
     let profileAvatarUrl = formData.get("avatar");
-    const profileData = load("token");
+    const profileData = load("profile");
 
     const updatedData = { avatar: profileAvatarUrl };
 
@@ -34,6 +36,20 @@ export function updateProfileAvatar() {
       `${baseUrl}/profiles/${profileData.name}/media`,
       updatedData
     );
+
+    if (response && response.avatar) {
+      const updatedProfileData = { ...profileData, avatar: response.avatar };
+      save("profile", updatedProfileData);
+
+      const profileImage = document.querySelector(".profile-image");
+      if (profileImage) {
+        profileImage.src = response.avatar;
+      }
+
+      editProfileModal.hide();
+      console.log(editProfileModal);
+    }
+
     return response;
   });
 }
