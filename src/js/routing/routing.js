@@ -1,5 +1,4 @@
 import { initHomePage, initProfilePage, addItemPage } from "../index.js";
-import { loginlistener } from "../listeners/loginListener.js";
 
 export const routes = {
   "/": initHomePage,
@@ -24,7 +23,11 @@ export function setupRouter() {
       event.preventDefault();
       const newHash = event.target.getAttribute("href");
       window.location.hash = newHash;
-      router();
+    } else if (event.target.matches("[data-post]")) {
+      // Handle clicks on the items on the main page
+      event.preventDefault();
+      const postId = event.target.getAttribute("data-post-id");
+      window.location.hash = `/post/${postId}`;
     }
   });
   router();

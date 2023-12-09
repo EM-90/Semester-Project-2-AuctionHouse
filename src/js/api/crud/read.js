@@ -1,10 +1,10 @@
 import { load } from "../../storage/index.js";
 import { baseUrl } from "../urls/all-urls.js";
 
-async function fetchPost() {
+async function fetchFromApi() {
   try {
     const token = load("token");
-    const response = await fetch("/api/listings", {
+    const response = await fetch(url, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,

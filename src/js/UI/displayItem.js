@@ -13,6 +13,8 @@ export function displayitem({
 
   const cardDiv = document.createElement("div");
   cardDiv.className = "card interactive";
+  cardDiv.setAttribute("data-post", true);
+  cardDiv.setAttribute("data-post-id", id);
 
   const image = document.createElement("img");
   image.src = imageUrl;

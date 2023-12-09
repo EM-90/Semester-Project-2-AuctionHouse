@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="../../../node_modules/bootstrap/dist/css/bootstrap-grid.min.css"
+    />
+    <link rel="stylesheet" href="../../../dist/css/main.css" />
+    <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <script defer type="module" src="../../js/UI/displayHomePage.js"></script>
+    <script defer type="module" src="../../js/UI/displayItem.js"></script>
+
+    <title>The Auction House</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <div class="container-sm">
+        <a class="navbar-brand" href="#">Auction House</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto"></ul>
+        </div>
+      </div>
+    </nav>
+    <!--Main content-->
+    <div id="loginMessageContainer"></div>
+    <div class="container mt-5 pt-5" id="mainContent">
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Item Details</h2>
+          <!-- Content for item details goes here -->
+        </div>
+        <div class="col-md-6">
+          <h2>Auction Details</h2>
+          <div class="list-group mt-3">
+            <div class="d-flex justify-content-between">
+              <a
+                href="#"
+                class="list-group-item list-group-item-action list-group-item-success"
+                >A simple success list group item</a
+              >
+            </div>
+            <div class="d-flex justify-content-between">
+              <a href="#" class="list-group-item list-group-item-action"
+                >A simple default list group item</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h2>Specifications</h2>
+          <!-- Content for specifications goes here -->
+        </div>
+      </div>
+
+      <div class="row" id="bootstrapRow"></div>
+    </div>
+  </body>
+</html>
