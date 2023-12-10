@@ -93,7 +93,9 @@ export async function displayProfilePage() {
 
         const bidsBadge = document.createElement("span");
         bidsBadge.className = "badge bg-primary rounded-pill";
-        bidsBadge.textContent = item._count ? item._count.bids : 0;
+        bidsBadge.textContent = item._count
+          ? item._count.bids + " bids"
+          : "0 bids";
         myAuctionItem.appendChild(itemContentContainer);
         myAuctionItem.appendChild(bidsBadge);
 
