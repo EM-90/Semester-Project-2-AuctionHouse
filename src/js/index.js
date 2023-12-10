@@ -52,6 +52,8 @@ export function initProfilePage() {
 }
 
 export function addItemPage() {
+  if (lastRoute === "addItem") return;
+  lastRoute = "addItem";
   displayAuctionItem();
   setupAuctionItemFormListener();
 }
