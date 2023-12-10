@@ -1,4 +1,5 @@
 import { registrationUrl } from "../urls/all-urls.js";
+import * as storage from "../../storage/index.js";
 
 export async function sendRegisterInfo(profile) {
   try {

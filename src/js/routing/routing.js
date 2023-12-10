@@ -19,10 +19,11 @@ export function setupRouter() {
   window.addEventListener("popstate", router);
 
   document.addEventListener("click", (event) => {
-    event.target.matches("[data-link]");
-    event.preventDefault();
-    const newHash = event.target.getAttribute("href");
-    window.location.hash = newHash;
+    if (event.target.matches("[data-link]")) {
+      event.preventDefault();
+      const newHash = event.target.getAttribute("href");
+      window.location.hash = newHash;
+    }
   });
   router();
 }
