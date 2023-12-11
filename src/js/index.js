@@ -11,6 +11,7 @@ import { setupAuctionItemFormListener } from "./listeners/addItemFormListener.js
 import { setupRouter } from "./routing/routing.js";
 import { processListings } from "./UI/processListings.js";
 import { displayMultipleItems } from "./UI/displayMultipleItems.js";
+/*import { fetchItem } from "./listeners/itemListener.js";*/
 
 // Route Initialization Functions
 
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 let lastRoute = null;
 
 export async function initHomePage() {
+  console.log("Initializing home page");
   if (lastRoute === "home") return;
   lastRoute = "home";
   displayHomePage();
@@ -33,6 +35,7 @@ export async function initHomePage() {
     const processedListings = await processListings(listingsData);
 
     displayMultipleItems(processedListings);
+    console.log("display listings");
   } catch (error) {
     console.error("Error initializing home page:", error);
   }
@@ -46,12 +49,14 @@ export async function initHomePage() {
 }
 
 export function initProfilePage() {
+  console.log("Initializing profile page");
   if (lastRoute === "profile") return;
   lastRoute = "profile";
   displayProfilePage();
 }
 
 export function addItemPage() {
+  console.log("Initializing add item page");
   if (lastRoute === "addItem") return;
   lastRoute = "addItem";
   displayAuctionItem();
@@ -69,3 +74,8 @@ function setupFormListeners() {
     loginlistener();
   }
 }
+
+/*export function initPostPage(itemId) {
+  console.log("initPostPage called with itemId:", itemId);
+  fetchItem(itemId);
+}*/

@@ -1,4 +1,4 @@
-import { displayitem } from "./displayItem.js";
+import { displayItem } from "./displayItem.js";
 
 export function displayMultipleItems(listings) {
   const bootstrapRow = document.getElementById("bootstrapRow");
@@ -9,6 +9,6 @@ export function displayMultipleItems(listings) {
   bootstrapRow.innerHTML = "";
 
   listings.forEach((listing) => {
-    displayitem(listing);
+    displayItem(listing);
   });
 }

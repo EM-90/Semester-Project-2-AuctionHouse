@@ -1,4 +1,4 @@
-export function displayitem({
+export function displayItem({
   title,
   imageUrl,
   altText,
@@ -13,8 +13,8 @@ export function displayitem({
 
   const cardDiv = document.createElement("div");
   cardDiv.className = "card interactive";
-  cardDiv.setAttribute("data-post", true);
-  cardDiv.setAttribute("data-post-id", id);
+  cardDiv.setAttribute("data-item", true);
+  cardDiv.setAttribute("data-item-id", id);
 
   const image = document.createElement("img");
   image.src = imageUrl;

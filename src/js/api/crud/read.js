@@ -1,7 +1,7 @@
 import { load } from "../../storage/index.js";
 import { baseUrl } from "../urls/all-urls.js";
 
-async function fetchFromApi() {
+export async function fetchFromApi(url) {
   try {
     const token = load("token");
     const response = await fetch(url, {
