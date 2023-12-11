@@ -1,10 +1,9 @@
-import { initHomePage, initProfilePage, addItemPage } from "../index.js";
-
-export const routes = {
-  "/": initHomePage,
-  "/profile": initProfilePage,
-  "/add-item": addItemPage,
-};
+import {
+  initHomePage,
+  initProfilePage,
+  addItemPage,
+  initItemPage,
+} from "../index.js";
 
 export function router() {
   const hash = window.location.hash || "#";
@@ -20,9 +19,13 @@ export function router() {
       initProfilePage();
       break;
     case "add-item":
-      console.log("Should initialize add item page");
+      console.log("Should initialize add page");
       addItemPage();
       break;
+    case "item-page":
+      const itemId = hash.substring(2).split("/")[1];
+      console.log("Should initialize item page");
+      initItemPage(itemId);
     default:
       console.log("Should initialize home page");
       initHomePage();

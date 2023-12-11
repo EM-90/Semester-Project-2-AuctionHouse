@@ -1,16 +1,16 @@
-/*import { fetchFromApi } from "../api/crud/read.js";
+import { fetchFromApi } from "../api/crud/read.js";
 import { displayItem } from "../UI/displayItem.js";
 import { baseUrl } from "../api/urls/all-urls.js";
 
 export function ItemListener() {
-  const cards = document.querySelector("[data-item]");
+  const cards = document.querySelectorAll("[data-item]");
 
   cards.forEach((cardDiv) => {
     cardDiv.addEventListener("click", function () {
-      const itemId = this.getAttribute("data-item-id");
       console.log("Card clicked, itemId:", itemId);
+      const itemId = this.getAttribute("data-item-id");
 
-      window.location.hash = `/post/${itemId}`;
+      window.location.hash = `/item-page/${itemId}`;
     });
   });
 }
@@ -26,4 +26,4 @@ export async function fetchItem(itemId) {
   } catch (error) {
     console.error("Error fetching items:", error);
   }
-}*/
+}

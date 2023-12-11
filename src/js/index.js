@@ -11,7 +11,7 @@ import { setupAuctionItemFormListener } from "./listeners/addItemFormListener.js
 import { setupRouter } from "./routing/routing.js";
 import { processListings } from "./UI/processListings.js";
 import { displayMultipleItems } from "./UI/displayMultipleItems.js";
-/*import { fetchItem } from "./listeners/itemListener.js";*/
+import { fetchItem } from "./listeners/itemListener.js";
 
 // Route Initialization Functions
 
@@ -75,7 +75,7 @@ function setupFormListeners() {
   }
 }
 
-/*export function initPostPage(itemId) {
+export async function initItemPage(itemId) {
   console.log("initPostPage called with itemId:", itemId);
-  fetchItem(itemId);
-}*/
+  await fetchItem(itemId);
+}
