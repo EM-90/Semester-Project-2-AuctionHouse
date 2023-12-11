@@ -11,7 +11,7 @@ import { setupAuctionItemFormListener } from "./listeners/addItemFormListener.js
 import { setupRouter } from "./routing/routing.js";
 import { processListings } from "./UI/processListings.js";
 import { displayMultipleItems } from "./UI/displayMultipleItems.js";
-import { fetchItem } from "./listeners/itemListener.js";
+import { ItemListener, fetchItem } from "./listeners/itemListener.js";
 
 // Route Initialization Functions
 
@@ -35,6 +35,7 @@ export async function initHomePage() {
     const processedListings = await processListings(listingsData);
 
     displayMultipleItems(processedListings);
+    ItemListener();
     console.log("display listings");
   } catch (error) {
     console.error("Error initializing home page:", error);
@@ -75,7 +76,9 @@ function setupFormListeners() {
   }
 }
 
-export async function initItemPage(itemId) {
-  console.log("initPostPage called with itemId:", itemId);
-  await fetchItem(itemId);
+export async function initItemPage(Id) {
+  if (lastRoute === "item-page") return;
+  lastRoute = "item-page";
+  console.log("initPostPage called with itemId:", Id);
+  await fetchItem(Id);
 }

@@ -1,52 +1,63 @@
-export function auctionItemPage() {
-  function createElement(type, className, text) {
-    const element = document.createElement(type);
-    if (className) element.className = className;
-    if (text) element.textContent = text;
-    return element;
-  }
+import { createElement } from "../helpers/createElement.js";
 
-  const mainContainer = createElement("div", "row");
-  const col1 = createElement("div", "col-md-6");
-  const col2 = createElement("div", "col-md-6");
-  const row2 = createElement("div", "row");
-  const col3 = createElement("div", "col-12");
+//'id', 'imageUrl', 'altText', 'title', 'description', 'auctionStart', 'auctionEnd', 'bids'
+// defined in the code, or i can pass these as parameters or get them from an object
+export function displayItemDetails(id) {
+  // Create the main content container
+  const mainContent = document.getElementById("mainContent");
+  mainContent.innerHTML = ""; // Clear existing content
 
-  col1.appendChild(createElement("h2", null, "Item Details"));
-  col1.appendChild(createElement("div", "card-container"));
+  // item details
+  const firstRow = createElement("div", "row");
+  const itemDetailsCol = createElement("div", "col-md-12");
+  const itemDetailsHeading = createElement("h2", null, "Item Details");
 
-  col2.appendChild(createElement("h2", null, "Auction Details"));
-  const listGroup = createElement("div", "list-group mt-3");
-  col2.appendChild(listGroup);
-
-  const listItems = [
-    {
-      text: "A simple success list group item",
-      className:
-        "list-group-item list-group-item-action list-group-item-success",
-    },
-    {
-      text: "A simple default list group item",
-      className: "list-group-item list-group-item-action",
-    },
-  ];
-
-  listItems.forEach((item) => {
-    const listItemDiv = createElement("div", "d-flex justify-content-between");
-
-    const anchor = createElement("a", item.className, item.text);
-    anchor.setAttribute("href", "#");
-    listItemDiv.appendChild(anchor);
-
-    listGroup.appendChild(listItemDiv);
+  // Create
+  const cardDiv = createElement("div", "card interactive", null, {
+    "data-item": true,
+    "data-item-id": id,
   });
+  const image = createElement("img", "card-img-top", null, {
+    src: imageUrl,
+    alt: altText || "Item Image",
+  });
+  const cardBody = createElement("div", "card-body");
+  const titleEl = createElement("h3", "title", title);
+  const cardParagraph = createElement("p", "card-text", description);
+  const createDateEl = createElement(
+    "p",
+    "created-at",
+    `Auction start: ${auctionStart}`
+  );
+  const endDateEl = createElement("p", "ends-at", `Ends at: ${auctionEnd}`);
+  const count = createElement("p", "bidding-count", `Bids: ${bids}`);
 
-  col3.appendChild(createElement("h2", null, "Specifications"));
+  cardBody.append(titleEl, createDateEl, endDateEl, count, cardParagraph);
+  cardDiv.append(image, cardBody);
+  itemDetailsCol.append(itemDetailsHeading, cardDiv);
+  firstRow.appendChild(itemDetailsCol);
+  mainContent.appendChild(firstRow);
 
-  mainContainer.appendChild(col1);
-  mainContainer.appendChild(col2);
-  row2.appendChild(col3);
+  // second row for auction details
+  const secondRow = createElement("div", "row");
+  const auctionDetailsCol = createElement("div", "col-md-12");
+  const auctionDetailsHeading = createElement("h2", null, "Auction Details");
 
-  document.body.appendChild(mainContainer);
-  document.body.appendChild(row2);
+  const listGroup = createElement("div", "list-group mt-3");
+
+  auctionDetailsCol.appendChild(auctionDetailsHeading);
+  auctionDetailsCol.appendChild(listGroup);
+  secondRow.appendChild(auctionDetailsCol);
+
+  mainContent.appendChild(secondRow);
+
+  // specifications
+  const thirdRow = createElement("div", "row");
+  const specificationsCol = createElement("div", "col-12");
+  const specificationsHeading = createElement("h2", null, "Specifications");
+  specificationsCol.appendChild(specificationsHeading);
+  thirdRow.appendChild(specificationsCol);
+
+  // Append the third row to the main content
+  mainContent.appendChild(thirdRow);
 }
