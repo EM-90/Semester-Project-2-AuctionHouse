@@ -15,7 +15,7 @@ export function ItemListener() {
 }
 
 export async function fetchItem(id) {
-  const url = `${baseUrl}/listings/${id}`;
+  const url = `${baseUrl}/listings/${id}?_seller=true&_bids=true`;
   try {
     const itemDetails = await fetchFromApi(url);
     console.log("Items fetched:", itemDetails);
