@@ -76,7 +76,7 @@ export async function displayProfilePage() {
       userAuctionItems.forEach((item) => {
         const myAuctionItem = document.createElement("li");
         myAuctionItem.className =
-          "list-group-item d-flex justify-content-between align-items-start";
+          "list-group-item d-flex justify-content-between align-items-center";
 
         const itemContentContainer = document.createElement("div");
         itemContentContainer.className = "ms-2 me-auto";
@@ -97,10 +97,10 @@ export async function displayProfilePage() {
           ? item._count.bids + " bids"
           : "0 bids";
         myAuctionItem.appendChild(itemContentContainer);
-        myAuctionItem.appendChild(bidsBadge);
 
         myAuctionItem.appendChild(itemContentContainer);
         myAuctionList.appendChild(myAuctionItem);
+        myAuctionItem.appendChild(bidsBadge);
       });
     } else {
       console.error("Error fetching user's listings");
