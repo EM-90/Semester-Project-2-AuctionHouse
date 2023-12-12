@@ -97,7 +97,6 @@ export async function displayProfilePage() {
           ? item._count.bids + " bids"
           : "0 bids";
         myAuctionItem.appendChild(itemContentContainer);
-
         myAuctionItem.appendChild(itemContentContainer);
         myAuctionList.appendChild(myAuctionItem);
         myAuctionItem.appendChild(bidsBadge);

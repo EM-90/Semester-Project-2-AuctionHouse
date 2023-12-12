@@ -13,11 +13,12 @@ export function displayItemDetails(itemDetails) {
   const itemDetailsCol = createElement("div", "col-md-4");
   const itemDetailsHeading = createElement("h2", null, "Item Details");
 
-  // Create
+  // Card
   const cardDiv = createElement("div", "card interactive", null, {
     "data-item": true,
     "data-item-id": itemDetails.id,
   });
+  const defaultImage = "/public/images/image-987-svgrepo-com.png";
   const imageUrl =
     itemDetails.media && itemDetails.media.length > 0
       ? itemDetails.media[0]
@@ -55,13 +56,12 @@ export function displayItemDetails(itemDetails) {
   mainContent.appendChild(firstRow);
 
   // second row for auction details
-  const secondRow = createElement("div", "row");
+
   const auctionDetailsCol = createElement("div", "col-md-6");
   const auctionDetailsHeading = createElement("h2", null, "Auction Details");
 
   const listGroup = createElement("div", "list-group mt-3");
 
-  auctionDetailsCol.appendChild(auctionDetailsHeading);
   auctionDetailsCol.appendChild(auctionDetailsHeading);
 
   const sortedBids = sortItemByHighestAmount(itemDetails.bids);
@@ -77,12 +77,13 @@ export function displayItemDetails(itemDetails) {
 
     const biddersAmount = createElement(
       "span",
-      "badge bg-light rounded-pill",
+      "badge bg-light",
       `$${bid.amount}`
     );
 
     if (index === 0) {
       biddersAmount.classList.add("bg-success");
+      bidListItem.classList.add("list-group-item-success");
       biddersAmount.classList.remove("bg-light");
     } else if (index > 0) {
       biddersAmount.classList.add("bg-danger");
@@ -91,14 +92,13 @@ export function displayItemDetails(itemDetails) {
 
     bidListItem.appendChild(bidderName);
     bidListItem.appendChild(biddersAmount);
-
     listGroup.appendChild(bidListItem);
   });
 
   auctionDetailsCol.appendChild(listGroup);
-  secondRow.appendChild(auctionDetailsCol);
+  firstRow.appendChild(auctionDetailsCol);
 
-  mainContent.appendChild(secondRow);
+  mainContent.appendChild(firstRow);
 
   // specifications
   const thirdRow = createElement("div", "row");
