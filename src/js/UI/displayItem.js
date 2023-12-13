@@ -1,5 +1,6 @@
 import { createElement } from "../helpers/createElement.js";
 import { countdown } from "../helpers/countDownAuctionTime.js";
+import { formatDateToDDMMYYYY } from "../helpers/formatDate.js";
 export function displayItem({
   title,
   imageUrl,
@@ -25,13 +26,17 @@ export function displayItem({
   const cardBody = createElement("div", "card-body");
   const titleEl = createElement("h3", "title", title);
   const cardParagraph = createElement("p", "card-text", description);
+  const creationDate = formatDateToDDMMYYYY(auctionStart);
   const createDateEl = createElement(
     "p",
     "created-at",
-    `Auction start: ${auctionStart}`
+    `Created: ${creationDate}`
   );
 
-  const endDateEl = createElement("p", "ends-at", `Ends at: ${auctionEnd}`);
+  const endDateEl = createElement("p", "ends-at");
+  const countdownEl = createElement("span", "countdown-timer");
+  endDateEl.appendChild(countdownEl);
+  countdown(auctionEnd, countdownEl);
 
   const count = createElement("p", "bidding-count", `Bids: ${bids}`);
 
