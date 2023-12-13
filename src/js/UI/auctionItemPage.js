@@ -2,12 +2,10 @@ import { countdown } from "../helpers/countDownAuctionTime.js";
 import { createElement } from "../helpers/createElement.js";
 import { sortItemByHighestAmount } from "../helpers/sorting.js";
 
-//'id', 'imageUrl', 'altText', 'title', 'description', 'auctionStart', 'auctionEnd', 'bids'
-// defined in the code, or i can pass these as parameters or get them from an object
 export function displayItemDetails(itemDetails) {
   // Create the main content container
   const mainContent = document.getElementById("mainContent");
-  mainContent.innerHTML = ""; // Clear existing content
+  mainContent.innerHTML = "";
 
   // item details
   const firstRow = createElement("div", "row");
@@ -53,6 +51,7 @@ export function displayItemDetails(itemDetails) {
   itemDetailsCol.append(itemDetailsHeading, cardDiv);
   firstRow.appendChild(itemDetailsCol);
   mainContent.appendChild(firstRow);
+  countdown(itemDetails.endsAt, countdownEl);
 
   // second row for auction details
 

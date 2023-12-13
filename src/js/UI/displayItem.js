@@ -1,4 +1,5 @@
 import { createElement } from "../helpers/createElement.js";
+import { countdown } from "../helpers/countDownAuctionTime.js";
 export function displayItem({
   title,
   imageUrl,
@@ -31,6 +32,7 @@ export function displayItem({
   );
 
   const endDateEl = createElement("p", "ends-at", `Ends at: ${auctionEnd}`);
+
   const count = createElement("p", "bidding-count", `Bids: ${bids}`);
 
   cardBody.append(titleEl, createDateEl, endDateEl, count, cardParagraph);
