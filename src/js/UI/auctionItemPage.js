@@ -60,9 +60,30 @@ export function displayItemDetails(itemDetails) {
   const auctionDetailsCol = createElement("div", "col-md-6");
   const auctionDetailsHeading = createElement("h2", null, "Auction Details");
 
-  const listGroup = createElement("div", "list-group mt-3");
+  // The bid section of the page
+  const bidForm = createElement("form", "bid-form", null, null, "bidForm");
+  const addBidInput = createElement("input", "form-control addBidInput", null, {
+    type: "number",
+    name: "bid",
+    placeholder: "Enter your bid",
+  });
+  const bidButton = createElement(
+    "button",
+    "btn btn-success mt-2 bid-button",
+    "Place Bid",
+    {
+      type: "submit",
+    },
+    "bidButton"
+  );
+
+  const listGroup = createElement("div", "list-group mt-3 scroll");
 
   auctionDetailsCol.appendChild(auctionDetailsHeading);
+
+  bidForm.appendChild(addBidInput);
+  bidForm.appendChild(bidButton);
+  auctionDetailsCol.appendChild(bidForm);
 
   const sortedBids = sortItemByHighestAmount(itemDetails.bids);
 

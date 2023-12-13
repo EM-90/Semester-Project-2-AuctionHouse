@@ -9,3 +9,8 @@
   width: 200px;
   border-radius: 50%;
 }
+
+.scroll {
+  max-height: calc(8 * 42px);
+  overflow-y: auto;
+}

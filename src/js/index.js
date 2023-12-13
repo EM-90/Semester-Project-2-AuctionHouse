@@ -12,6 +12,7 @@ import { setupRouter } from "./routing/routing.js";
 import { processListings } from "./UI/processListings.js";
 import { displayMultipleItems } from "./UI/displayMultipleItems.js";
 import { ItemListener, fetchItem } from "./listeners/itemListener.js";
+import { addBidListener } from "./helpers/addBid.js";
 
 // Route Initialization Functions
 
@@ -31,7 +32,9 @@ export async function initHomePage() {
   lastRoute = "home";
   displayHomePage();
   try {
-    const listingsData = await fetchListings();
+    const listingsData = await fetchListings(
+      "?sort=created&sortOrder=desc&limit=20&_active=true"
+    );
     const processedListings = await processListings(listingsData);
 
     displayMultipleItems(processedListings);
@@ -81,4 +84,5 @@ export async function initItemPage(Id) {
   lastRoute = "item-page";
   console.log("initPostPage called with itemId:", Id);
   await fetchItem(Id);
+  addBidListener();
 }

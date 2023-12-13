@@ -10729,4 +10729,9 @@ textarea.form-control-lg {
   border-radius: 50%;
 }
 
+.scroll {
+  max-height: 336px;
+  overflow-y: auto;
+}
+
 /*# sourceMappingURL=main.css.map */
