@@ -13,6 +13,7 @@ import { processListings } from "./UI/processListings.js";
 import { displayMultipleItems } from "./UI/displayMultipleItems.js";
 import { ItemListener, fetchItem } from "./listeners/itemListener.js";
 import { addBidListener } from "./helpers/addBid.js";
+import { countdown } from "./helpers/countDownAuctionTime.js";
 
 // Route Initialization Functions
 

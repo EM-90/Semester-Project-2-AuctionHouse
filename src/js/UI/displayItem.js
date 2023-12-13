@@ -1,3 +1,4 @@
+import { createElement } from "../helpers/createElement.js";
 export function displayItem({
   title,
   imageUrl,
@@ -8,50 +9,34 @@ export function displayItem({
   bids,
   id,
 }) {
-  const colDiv = document.createElement("div");
-  colDiv.className = "col-lg-4 col-md-6 col-12 pb-2 pt-5";
+  const colDiv = createElement("div", "col-lg-4 col-md-6 col-12 pb-2 pt-5");
 
-  const cardDiv = document.createElement("div");
-  cardDiv.className = "card interactive";
-  cardDiv.setAttribute("data-item", true);
-  cardDiv.setAttribute("data-item-id", id);
+  const cardDiv = createElement("div", "card interactive", null, {
+    "data-item": true,
+    "data-item-id": id,
+  });
 
-  const image = document.createElement("img");
-  image.src = imageUrl;
-  image.className = "card-img-top";
-  image.alt = altText;
+  const image = createElement("img", "card-img-top", null, {
+    src: imageUrl,
+    alt: altText,
+  });
 
-  const cardBody = document.createElement("div");
-  cardBody.className = "card-body";
+  const cardBody = createElement("div", "card-body");
+  const titleEl = createElement("h3", "title", title);
+  const cardParagraph = createElement("p", "card-text", description);
+  const createDateEl = createElement(
+    "p",
+    "created-at",
+    `Auction start: ${auctionStart}`
+  );
 
-  const titleEl = document.createElement("h3");
-  titleEl.className = "title";
-  titleEl.textContent = title;
+  const endDateEl = createElement("p", "ends-at", `Ends at: ${auctionEnd}`);
+  const count = createElement("p", "bidding-count", `Bids: ${bids}`);
 
-  const cardParagraph = document.createElement("p");
-  cardParagraph.className = "card-text";
-  cardParagraph.textContent = description;
-
-  const createDateEl = document.createElement("p");
-  createDateEl.className = "created-at";
-  createDateEl.textContent = `Auction start: ${auctionStart}`;
-
-  const endDateEl = document.createElement("p");
-  endDateEl.className = "ends-at";
-  endDateEl.textContent = `Ends at: ${auctionEnd}`;
-
-  const count = document.createElement("p");
-  count.className = "bidding-count";
-  count.textContent = `Bids: ${bids}`;
-
+  cardBody.append(titleEl, createDateEl, endDateEl, count, cardParagraph);
   cardDiv.appendChild(image);
-  cardBody.appendChild(titleEl);
   cardDiv.appendChild(cardBody);
   colDiv.appendChild(cardDiv);
-  cardBody.appendChild(createDateEl);
-  cardBody.appendChild(endDateEl);
-  cardBody.appendChild(count);
-  cardBody.appendChild(cardParagraph);
 
   document.getElementById("bootstrapRow").appendChild(colDiv);
 }

@@ -1,3 +1,4 @@
+import { countdown } from "../helpers/countDownAuctionTime.js";
 import { createElement } from "../helpers/createElement.js";
 import { sortItemByHighestAmount } from "../helpers/sorting.js";
 
@@ -36,13 +37,10 @@ export function displayItemDetails(itemDetails) {
   const createDateEl = createElement(
     "p",
     "created-at",
-    `Auction start: ${itemDetails.auctionStart}`
+    `Auction start: ${itemDetails.created}`
   );
-  const endDateEl = createElement(
-    "p",
-    "ends-at",
-    `Ends at: ${itemDetails.auctionEnd}`
-  );
+  const endDateEl = createElement("p", "ends-at", "Auction ends in: ");
+  const countdownEl = createElement("span", "countdown-timer");
   const bids = createElement(
     "p",
     "total-bids",
@@ -51,6 +49,7 @@ export function displayItemDetails(itemDetails) {
 
   cardBody.append(titleEl, createDateEl, endDateEl, bids, cardParagraph);
   cardDiv.append(image, cardBody);
+  endDateEl.appendChild(countdownEl);
   itemDetailsCol.append(itemDetailsHeading, cardDiv);
   firstRow.appendChild(itemDetailsCol);
   mainContent.appendChild(firstRow);
