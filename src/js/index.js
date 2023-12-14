@@ -45,11 +45,6 @@ export async function initHomePage() {
     console.error("Error initializing home page:", error);
   }
 
-  const searchButton = document.getElementById("searchField");
-  if (searchButton) {
-    searchButton.addEventListener("change", filterListings);
-  }
-
   setupFormListeners();
 }
 
