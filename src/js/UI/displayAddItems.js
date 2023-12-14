@@ -1,3 +1,4 @@
+import { createElement } from "../helpers/createElement.js";
 /*<div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Email address</label>
   <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
@@ -11,91 +12,85 @@
 
 export function displayAuctionItem() {
   const mainContentContainer = document.querySelector("#mainContent");
-
   mainContentContainer.innerHTML = "";
 
-  const formContainer = document.createElement("form");
-  formContainer.className = "m-3 add-item-form";
-  formContainer.method = "post";
-  formContainer.id = "addItemForm";
+  const formContainer = createElement("form", "m-3 add-item-form", null, {
+    method: "post",
+    id: "addItemForm",
+  });
 
   // Title Field
-  const titleLabel = document.createElement("label");
-  titleLabel.setAttribute("for", "title");
-  titleLabel.className = "form-label";
-  titleLabel.textContent = "Title";
-
-  const titleInput = document.createElement("input");
-  titleInput.type = "text";
-  titleInput.className = "form-control";
-  titleInput.name = "title";
-  titleInput.id = "title";
+  const titleLabel = createElement("label", "form-label", "Title", {
+    for: "title",
+  });
+  const titleInput = createElement("input", "form-control", null, {
+    type: "text",
+    name: "title",
+    id: "title",
+  });
 
   // Description Field
-  const descriptionLabel = document.createElement("label");
-  descriptionLabel.setAttribute("for", "description");
-  descriptionLabel.className = "form-label";
-  descriptionLabel.textContent = "Description";
-
-  const descriptionInput = document.createElement("input");
-  descriptionInput.type = "text";
-  descriptionInput.className = "form-control";
-  descriptionInput.name = "description";
-  descriptionInput.id = "description";
-
-  formContainer.appendChild(titleLabel);
-  formContainer.appendChild(titleInput);
-  formContainer.appendChild(descriptionLabel);
-  formContainer.appendChild(descriptionInput);
+  const descriptionLabel = createElement("label", "form-label", "Description", {
+    for: "description",
+  });
+  const descriptionInput = createElement("input", "form-control", null, {
+    type: "text",
+    name: "description",
+    id: "description",
+  });
 
   // Ends At Field
-  const endsAtLabel = document.createElement("label");
-  endsAtLabel.setAttribute("for", "endsAt");
-  endsAtLabel.className = "form-label";
-  endsAtLabel.textContent = "Ends At";
-
-  const endsAtInput = document.createElement("input");
-  endsAtInput.type = "datetime-local";
-  endsAtInput.className = "form-control";
-  endsAtInput.name = "endsAt";
-  endsAtInput.id = "endsAt";
-  formContainer.appendChild(endsAtLabel);
-  formContainer.appendChild(endsAtInput);
+  const endsAtLabel = createElement("label", "form-label", "Ends At", {
+    for: "endsAt",
+  });
+  const endsAtInput = createElement("input", "form-control", null, {
+    type: "datetime-local",
+    name: "endsAt",
+    id: "endsAt",
+  });
 
   // Tags Field
-  const tagsLabel = document.createElement("label");
-  tagsLabel.setAttribute("for", "tags");
-  tagsLabel.className = "form-label";
-  tagsLabel.textContent = "Tags";
+  const tagsLabel = createElement("label", "form-label", "Tags", {
+    for: "tags",
+  });
+  const tagsInput = createElement("input", "form-control", null, {
+    type: "text",
+    name: "tags",
+    id: "tags",
+  });
 
-  const tagsInput = document.createElement("input");
-  tagsInput.type = "text";
-  tagsInput.className = "form-control";
-  tagsInput.name = "tags";
-  tagsInput.id = "tags";
-  formContainer.appendChild(tagsLabel);
-  formContainer.appendChild(tagsInput);
-
-  // Media Field - Picture of the Auction item
-  const mediaLabel = document.createElement("label");
-  mediaLabel.setAttribute("for", "media");
-  mediaLabel.className = "form-label";
-  mediaLabel.textContent = "Media URL";
-
-  const mediaInput = document.createElement("input");
-  mediaInput.type = "text";
-  mediaInput.className = "form-control";
-  mediaInput.name = "madia";
-  mediaInput.id = "media";
-  formContainer.appendChild(mediaLabel);
-  formContainer.appendChild(mediaInput);
+  // Media Field
+  const mediaLabel = createElement("label", "form-label", "Media URL", {
+    for: "media",
+  });
+  const mediaInput = createElement("input", "form-control", null, {
+    type: "text",
+    name: "media",
+    id: "media",
+  });
 
   // Submit Button
-  const submitButton = document.createElement("button");
-  submitButton.type = "submit";
-  submitButton.className = "btn btn-primary mt-3";
-  submitButton.textContent = "Submit";
-  formContainer.appendChild(submitButton);
+  const submitButton = createElement(
+    "button",
+    "btn btn-primary mt-3",
+    "Submit",
+    { type: "submit" }
+  );
+
+  // Append all elements to the form container
+  formContainer.append(
+    titleLabel,
+    titleInput,
+    descriptionLabel,
+    descriptionInput,
+    endsAtLabel,
+    endsAtInput,
+    tagsLabel,
+    tagsInput,
+    mediaLabel,
+    mediaInput,
+    submitButton
+  );
 
   mainContentContainer.appendChild(formContainer);
 }

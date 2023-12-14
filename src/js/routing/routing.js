@@ -26,6 +26,7 @@ export function router() {
       const itemId = hash.substring(2).split("/")[1];
       console.log("Should initialize item page");
       initItemPage(itemId);
+
       break;
     default:
       console.log("Should initialize home page");

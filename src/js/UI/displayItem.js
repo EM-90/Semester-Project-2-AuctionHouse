@@ -13,7 +13,7 @@ export function displayItem({
 }) {
   const colDiv = createElement("div", "col-lg-4 col-md-6 col-12 pb-2 pt-5");
 
-  const cardDiv = createElement("div", "card interactive", null, {
+  const cardDiv = createElement("div", "card interactive searchable", null, {
     "data-item": true,
     "data-item-id": id,
   });
@@ -23,9 +23,9 @@ export function displayItem({
     alt: altText,
   });
 
-  const cardBody = createElement("div", "card-body");
-  const titleEl = createElement("h3", "title", title);
-  const cardParagraph = createElement("p", "card-text", description);
+  const cardBody = createElement("div", "card-body ");
+  const titleEl = createElement("h3", "title ", title);
+  const cardParagraph = createElement("p", "card-text ", description);
   const creationDate = formatDateToDDMMYYYY(auctionStart);
   const createDateEl = createElement(
     "p",

@@ -35,6 +35,8 @@ export function setupAuctionItemFormListener() {
       const result = await createListing(newListingData);
       if (result) {
         await fetchListings();
+
+        window.location.hash = "#";
       }
       // Handle the result
     } catch (error) {

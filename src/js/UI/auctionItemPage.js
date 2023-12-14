@@ -17,14 +17,26 @@ export function displayItemDetails(itemDetails) {
     "data-item": true,
     "data-item-id": itemDetails.id,
   });
-  const defaultImage = "/public/images/image-987-svgrepo-com.png";
-  const imageUrl =
-    itemDetails.media && itemDetails.media.length > 0
-      ? itemDetails.media[0]
-      : defaultImage;
-  const image = createElement("img", "card-img-top", null, {
-    src: imageUrl,
-  });
+  const imageGallery = createElement("div", "image-gallery");
+
+  // Check if there are multiple images
+  if (itemDetails.media && itemDetails.media.length > 0) {
+    itemDetails.media.forEach((url) => {
+      const img = createElement("img", "card-img", null, {
+        src: url,
+        alt: itemDetails.title,
+      });
+      imageGallery.appendChild(img);
+    });
+  } else {
+    // Default image if no images are present
+    const defaultImage = "/public/images/image-987-svgrepo-com.png";
+    const img = createElement("img", "card-img", null, {
+      src: defaultImage,
+      alt: "Default Image",
+    });
+    imageGallery.appendChild(img);
+  }
   const cardBody = createElement("div", "card-body");
   const titleEl = createElement("h3", "title", itemDetails.title);
   const cardParagraph = createElement(
@@ -46,7 +58,7 @@ export function displayItemDetails(itemDetails) {
   );
 
   cardBody.append(titleEl, createDateEl, endDateEl, bids, cardParagraph);
-  cardDiv.append(image, cardBody);
+  cardDiv.append(imageGallery, cardBody);
   endDateEl.appendChild(countdownEl);
   itemDetailsCol.append(itemDetailsHeading, cardDiv);
   firstRow.appendChild(itemDetailsCol);

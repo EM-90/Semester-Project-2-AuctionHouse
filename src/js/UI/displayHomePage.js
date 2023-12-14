@@ -1,3 +1,4 @@
+import { createElement } from "../helpers/createElement.js";
 // The dynamic html made here is based of the html commented out here :)
 
 /*<h1 class="mb-3">All our auctions</h1>
@@ -21,42 +22,37 @@
 
 export function displayHomePage() {
   const mainContentContainer = document.getElementById("mainContent");
-
   mainContentContainer.innerHTML = "";
 
-  const header = document.createElement("h1");
-  header.className = "mb-3";
-  header.textContent = "All our auctions";
+  const header = createElement("h1", "mb-3", "All our auctions");
   mainContentContainer.appendChild(header);
 
-  const form = document.createElement("form");
-  form.className = "d-flex";
-  form.setAttribute("role", "search");
-
-  const input = document.createElement("input");
-  input.className = "form-control me-2";
-  input.id = "searchField";
-  input.type = "search";
-  input.placeholder = "Search";
-  input.setAttribute("aria-label", "Search");
+  const form = createElement("form", "d-flex", null, { role: "search" });
+  const input = createElement("input", "form-control me-2", null, {
+    id: "searchField",
+    type: "search",
+    placeholder: "Search",
+    "aria-label": "Search",
+  });
   form.appendChild(input);
 
-  const searchButton = document.createElement("button");
-  searchButton.className = "btn btn-outline-success";
-  searchButton.id = "searchButton";
-  searchButton.type = "submit";
-  searchButton.textContent = "Search";
+  const searchButton = createElement(
+    "button",
+    "btn btn-outline-success",
+    "Search",
+    {
+      id: "searchButton",
+      type: "submit",
+    }
+  );
   form.appendChild(searchButton);
 
   const addButton = (iconClass) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "btn btn-light ms-2";
-
-    const icon = document.createElement("i");
-    icon.className = iconClass;
+    const button = createElement("button", "btn btn-light ms-2", null, {
+      type: "button",
+    });
+    const icon = createElement("i", iconClass);
     button.appendChild(icon);
-
     form.appendChild(button);
   };
 
@@ -67,9 +63,7 @@ export function displayHomePage() {
 
   let bootstrapRow = document.getElementById("bootstrapRow");
   if (!bootstrapRow) {
-    bootstrapRow = document.createElement("div");
-    bootstrapRow.id = "bootstrapRow";
-    bootstrapRow.className = "row";
+    bootstrapRow = createElement("div", "row", null, { id: "bootstrapRow" });
     mainContentContainer.appendChild(bootstrapRow);
   }
 }

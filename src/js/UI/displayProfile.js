@@ -1,6 +1,8 @@
 import { fetchUserListings } from "../api/crud/read.js";
 import { load } from "../storage/index.js";
 import { updateProfileAvatar } from "../api/crud/update.js";
+import { createElement } from "../helpers/createElement.js";
+import { ItemListener } from "../listeners/itemListener.js";
 
 // Container in the html where everything is going to append <div class="container mt-5 pt-5 main-page">
 
@@ -16,91 +18,89 @@ import { updateProfileAvatar } from "../api/crud/update.js";
 
 export async function displayProfilePage() {
   const mainContentContainer = document.getElementById("mainContent");
-
   mainContentContainer.innerHTML = "";
 
-  const profileImage = document.createElement("img");
-  profileImage.className = "profile-image";
-  profileImage.style.backgroundColor = "lightgray";
-
   const profileData = load("profile");
+  const defaultAvatar = "../../public/images/image-987-svgrepo-com.png";
+  const avatarUrl =
+    profileData && profileData.avatar ? profileData.avatar : defaultAvatar;
 
-  if (profileData && profileData.avatar) {
-    profileImage.src = profileData.avatar;
-  } else {
-    profileImage.src = "../../public/images/image-987-svgrepo-com.png";
-  }
+  const profileImage = createElement("img", "profile-image", null, {
+    src: avatarUrl,
+    style: "background-color: lightgray;",
+  });
 
   mainContentContainer.appendChild(profileImage);
 
-  const profileName = document.createElement("h2");
-  profileName.className = "profile-name";
-  profileName.textContent = `${profileData.name}`;
+  const profileName = createElement("h2", "profile-name", profileData.name);
+  const editIcon = createElement("i", "bi bi-pencil-square ms-3", null, {
+    id: "editProfile",
+  });
 
-  const editIcon = document.createElement("i");
-  editIcon.className = "bi bi-pencil-square ms-3";
-  editIcon.id = "editProfile";
   profileName.appendChild(editIcon);
 
   const editProfileModal = new bootstrap.Modal(
     document.getElementById("editProfileModal")
   );
-
-  editIcon.addEventListener("click", function () {
-    editProfileModal.show();
-  });
+  editIcon.addEventListener("click", () => editProfileModal.show());
 
   updateProfileAvatar();
-
   mainContentContainer.appendChild(profileName);
 
-  const totalCredits = document.createElement("p");
-  totalCredits.className = "credit-display";
-  totalCredits.id = "creditsDisplay";
-  totalCredits.textContent = `Your total credit:${profileData.credits}`;
-
+  const totalCredits = createElement(
+    "p",
+    "credit-display",
+    `Your total credit: ${profileData.credits}`,
+    { id: "creditsDisplay" }
+  );
   mainContentContainer.appendChild(totalCredits);
 
-  //dont know where to append this yet
-
-  // This will be the auction list display
-
-  const myAuctionList = document.createElement("ul");
-  myAuctionList.className = "list-group mt-5";
+  const myAuctionList = createElement("ul", "list-group mt-5");
 
   try {
-    // Fetch the user's listings using the username
     const userAuctionItems = await fetchUserListings(profileData.name);
-
     if (userAuctionItems && userAuctionItems.length > 0) {
+      console.log("Fetched items:", userAuctionItems);
       userAuctionItems.forEach((item) => {
-        const myAuctionItem = document.createElement("li");
-        myAuctionItem.className =
-          "list-group-item d-flex justify-content-between align-items-center";
+        const defaultImage = "/public/images/image-987-svgrepo-com.png";
+        const imageUrl =
+          item.media && item.media.length > 0 ? item.media[0] : defaultImage;
+        const myAuctionItem = createElement(
+          "li",
+          "list-group-item d-flex justify-content-between align-items-center",
+          null,
+          {
+            "data-item": true,
+            "data-item-id": item.id,
+          }
+        );
 
-        const itemContentContainer = document.createElement("div");
-        itemContentContainer.className = "ms-2 me-auto";
-
-        const headingItem = document.createElement("div");
-        headingItem.className = "fw-bold";
-        headingItem.textContent = item.title;
+        const itemContentContainer = createElement("div", "ms-2 me-auto");
+        const headingItem = createElement("div", "fw-bold", item.title);
         itemContentContainer.appendChild(headingItem);
 
         const descriptionText = document.createTextNode(
-          `Description ${item.description}`
+          `Description: ${item.description}`
         );
+        const itemImage = createElement("img", "profile-item-image", null, {
+          src: imageUrl,
+        });
+
         itemContentContainer.appendChild(descriptionText);
 
-        const bidsBadge = document.createElement("span");
-        bidsBadge.className = "badge bg-primary rounded-pill";
-        bidsBadge.textContent = item._count
-          ? item._count.bids + " bids"
-          : "0 bids";
+        const bidsCount = item._count ? item._count.bids : 0;
+        const bidsBadge = createElement(
+          "span",
+          "badge bg-primary rounded-pill",
+          `${bidsCount} bids`
+        );
+
         myAuctionItem.appendChild(itemContentContainer);
-        myAuctionItem.appendChild(itemContentContainer);
-        myAuctionList.appendChild(myAuctionItem);
+        myAuctionItem.appendChild(itemImage);
         myAuctionItem.appendChild(bidsBadge);
+        myAuctionList.appendChild(myAuctionItem);
       });
+      console.log(userAuctionItems);
     } else {
       console.error("Error fetching user's listings");
     }

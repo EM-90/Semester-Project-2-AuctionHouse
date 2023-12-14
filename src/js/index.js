@@ -4,7 +4,6 @@ import { loginlistener } from "./listeners/loginListener.js";
 import { logoutUser } from "./listeners/logoutListener.js";
 import { registerListener } from "./listeners/registerListener.js";
 import { displayHomePage } from "./UI/displayHomePage.js";
-import { filterListings } from "./listeners/filters/listFilter.js";
 import { displayProfilePage } from "./UI/displayProfile.js";
 import { displayAuctionItem } from "./UI/displayAddItems.js";
 import { setupAuctionItemFormListener } from "./listeners/addItemFormListener.js";
@@ -13,7 +12,6 @@ import { processListings } from "./UI/processListings.js";
 import { displayMultipleItems } from "./UI/displayMultipleItems.js";
 import { ItemListener, fetchItem } from "./listeners/itemListener.js";
 import { addBidListener } from "./helpers/addBid.js";
-import { countdown } from "./helpers/countDownAuctionTime.js";
 
 // Route Initialization Functions
 
@@ -34,7 +32,7 @@ export async function initHomePage() {
   displayHomePage();
   try {
     const listingsData = await fetchListings(
-      "?sort=created&sortOrder=desc&limit=20&_active=true"
+      "?sort=created&sortOrder=desc&limit=50&_active=true"
     );
     const processedListings = await processListings(listingsData);
 
@@ -46,13 +44,18 @@ export async function initHomePage() {
   }
 
   setupFormListeners();
+
+  /*setInterval(() => {
+    window.location.reload();
+  }, 120000);*/ // If you want to get the page refreshed every other minute, instead of doing it manualy
 }
 
-export function initProfilePage() {
+export async function initProfilePage() {
   console.log("Initializing profile page");
   if (lastRoute === "profile") return;
   lastRoute = "profile";
-  displayProfilePage();
+  await displayProfilePage();
+  ItemListener();
 }
 
 export function addItemPage() {
