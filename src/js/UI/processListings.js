@@ -15,6 +15,7 @@ export async function processListings(listings) {
       auctionEnd: listing.endsAt,
       bids: listing._count ? listing._count.bids : 0,
       id: listing.id,
+      tags: listing.tags,
     };
   };
 

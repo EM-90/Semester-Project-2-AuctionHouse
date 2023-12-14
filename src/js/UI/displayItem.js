@@ -10,6 +10,7 @@ export function displayItem({
   description,
   bids,
   id,
+  tags,
 }) {
   const colDiv = createElement("div", "col-lg-4 col-md-6 col-12 pb-2 pt-5");
 
@@ -33,6 +34,17 @@ export function displayItem({
     `Created: ${creationDate}`
   );
 
+  // Tags
+
+  const tagsContainer = createElement("div", "tags-container");
+
+  tags.forEach((tag) => {
+    if (tag) {
+      const tagElement = createElement("p", "badge bg-success me-2  ", tags);
+      tagsContainer.appendChild(tagElement);
+    }
+  });
+
   const endDateEl = createElement("p", "ends-at");
   const countdownEl = createElement("span", "countdown-timer");
   endDateEl.appendChild(countdownEl);
@@ -40,7 +52,14 @@ export function displayItem({
 
   const count = createElement("p", "bidding-count", `Bids: ${bids}`);
 
-  cardBody.append(titleEl, createDateEl, endDateEl, count, cardParagraph);
+  cardBody.append(
+    titleEl,
+    createDateEl,
+    endDateEl,
+    tagsContainer,
+    cardParagraph,
+    count
+  );
   cardDiv.appendChild(image);
   cardDiv.appendChild(cardBody);
   colDiv.appendChild(cardDiv);
