@@ -12,6 +12,7 @@ import { processListings } from "./UI/processListings.js";
 import { displayMultipleItems } from "./UI/displayMultipleItems.js";
 import { ItemListener, fetchItem } from "./listeners/itemListener.js";
 import { addBidListener } from "./helpers/addBid.js";
+import { searchBarFunction } from "./listeners/filters/listFilter.js";
 
 // Route Initialization Functions
 
@@ -32,11 +33,12 @@ export async function initHomePage() {
   displayHomePage();
   try {
     const listingsData = await fetchListings(
-      "?sort=created&sortOrder=desc&limit=50&_active=true"
+      "?sort=created&sortOrder=desc&limit=100&_active=true"
     );
     const processedListings = await processListings(listingsData);
 
     displayMultipleItems(processedListings);
+    searchBarFunction(processedListings);
     ItemListener();
     console.log("display listings");
   } catch (error) {

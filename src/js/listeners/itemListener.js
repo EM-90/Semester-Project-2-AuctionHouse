@@ -3,14 +3,16 @@ import { baseUrl } from "../api/urls/all-urls.js";
 import { displayItemDetails } from "../UI/auctionItemPage.js";
 
 export function ItemListener() {
-  const cards = document.querySelectorAll("[data-item]");
+  const bootstrapRow = document.getElementById("bootstrapRow");
 
-  cards.forEach((cardDiv) => {
-    cardDiv.addEventListener("click", function () {
-      const itemId = this.getAttribute("data-item-id");
+  bootstrapRow.addEventListener("click", function (event) {
+    const clickedItem = event.target.closest(".card.interactive.searchable");
+
+    if (clickedItem) {
+      const itemId = clickedItem.getAttribute("data-item-id");
       console.log("Card clicked, itemId:", itemId);
       window.location.hash = `/item-page/${itemId}`;
-    });
+    }
   });
 }
 
