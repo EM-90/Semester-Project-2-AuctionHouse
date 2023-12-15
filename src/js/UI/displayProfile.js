@@ -60,11 +60,7 @@ export async function displayProfilePage() {
   try {
     const userAuctionItems = await fetchUserListings(profileData.name);
     if (userAuctionItems && userAuctionItems.length > 0) {
-      console.log("Fetched items:", userAuctionItems);
       userAuctionItems.forEach((item) => {
-        const defaultImage = "/public/images/image-987-svgrepo-com.png";
-        const imageUrl =
-          item.media && item.media.length > 0 ? item.media[0] : defaultImage;
         const myAuctionItem = createElement(
           "li",
           "list-group-item d-flex justify-content-between align-items-center",
@@ -82,11 +78,16 @@ export async function displayProfilePage() {
         const descriptionText = document.createTextNode(
           `Description: ${item.description}`
         );
-        const itemImage = createElement("img", "profile-item-image", null, {
-          src: imageUrl,
-        });
-
         itemContentContainer.appendChild(descriptionText);
+
+        const imageGallery = createElement("div", "image-gallery");
+        item.media.forEach((url) => {
+          const imageUrl = url ? url : defaultImage;
+          const img = createElement("img", "profile-item-image", null, {
+            src: imageUrl,
+          });
+          imageGallery.appendChild(img);
+        });
 
         const bidsCount = item._count ? item._count.bids : 0;
         const bidsBadge = createElement(
@@ -96,8 +97,8 @@ export async function displayProfilePage() {
         );
 
         myAuctionItem.appendChild(itemContentContainer);
-        myAuctionItem.appendChild(itemImage);
         myAuctionItem.appendChild(bidsBadge);
+        myAuctionItem.appendChild(imageGallery);
         myAuctionList.appendChild(myAuctionItem);
       });
       console.log(userAuctionItems);

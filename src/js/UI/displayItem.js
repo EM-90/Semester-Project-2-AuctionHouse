@@ -40,7 +40,7 @@ export function displayItem({
 
   tags.forEach((tag) => {
     if (tag) {
-      const tagElement = createElement("p", "badge bg-success me-2  ", tags);
+      const tagElement = createElement("p", "badge bg-success me-2  ", tag);
       tagsContainer.appendChild(tagElement);
     }
   });
