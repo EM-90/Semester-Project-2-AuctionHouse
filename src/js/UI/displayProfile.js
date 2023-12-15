@@ -55,7 +55,10 @@ export async function displayProfilePage() {
   );
   mainContentContainer.appendChild(totalCredits);
 
-  const myAuctionList = createElement("ul", "list-group mt-5");
+  const myAuctionList = createElement(
+    "ul",
+    "list-group list-profile-page mt-5"
+  );
 
   try {
     const userAuctionItems = await fetchUserListings(profileData.name);
@@ -81,13 +84,14 @@ export async function displayProfilePage() {
         itemContentContainer.appendChild(descriptionText);
 
         const imageGallery = createElement("div", "image-gallery");
-        item.media.forEach((url) => {
-          const imageUrl = url ? url : defaultImage;
-          const img = createElement("img", "profile-item-image", null, {
-            src: imageUrl,
-          });
-          imageGallery.appendChild(img);
+
+        const defaultImage = "/public/images/image-987-svgrepo-com.png";
+        const imageUrl =
+          item.media && item.media.length > 0 ? item.media[0] : defaultImage;
+        const img = createElement("img", "profile-item-image", null, {
+          src: imageUrl,
         });
+        imageGallery.appendChild(img);
 
         const bidsCount = item._count ? item._count.bids : 0;
         const bidsBadge = createElement(

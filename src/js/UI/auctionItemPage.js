@@ -9,34 +9,52 @@ export function displayItemDetails(itemDetails) {
 
   // item details
   const firstRow = createElement("div", "row");
-  const itemDetailsCol = createElement("div", "col-md-4");
+  const itemDetailsCol = createElement("div", "col-md-6");
   const itemDetailsHeading = createElement("h2", null, "Item Details");
 
   // Card
-  const cardDiv = createElement("div", "card interactive", null, {
+  const cardDiv = createElement("div", "card-specific", null, {
     "data-item": true,
     "data-item-id": itemDetails.id,
   });
   const imageGallery = createElement("div", "image-gallery");
+  const thumbnailsContainer = createElement("div", "thumbnails-container");
+  let mainImageElement;
 
-  // Check if there are multiple images
   if (itemDetails.media && itemDetails.media.length > 0) {
+    mainImageElement = createElement("img", "main-image", null, {
+      src: itemDetails.media[0],
+      alt: itemDetails.title,
+    });
+    imageGallery.appendChild(mainImageElement);
     itemDetails.media.forEach((url) => {
-      const img = createElement("img", "card-img", null, {
+      const img = createElement("img", "thumbnail-image", null, {
         src: url,
         alt: itemDetails.title,
       });
-      imageGallery.appendChild(img);
+      img.onclick = () => setMainImage(img.src); // Set main image on click
+      thumbnailsContainer.appendChild(img);
     });
   } else {
     // Default image if no images are present
     const defaultImage = "/public/images/image-987-svgrepo-com.png";
-    const img = createElement("img", "card-img", null, {
+    mainImageElement = createElement("img", "main-image", null, {
       src: defaultImage,
       alt: "Default Image",
     });
-    imageGallery.appendChild(img);
+
+    if ((mainImageElement = 0)) {
+      thumbnailsContainer.style.display = "none";
+    }
+    imageGallery.appendChild(mainImageElement);
   }
+
+  imageGallery.appendChild(thumbnailsContainer);
+
+  function setMainImage(src) {
+    mainImageElement.src = src;
+  }
+
   const cardBody = createElement("div", "card-body");
   const titleEl = createElement("h3", "title", itemDetails.title);
   const cardParagraph = createElement(
