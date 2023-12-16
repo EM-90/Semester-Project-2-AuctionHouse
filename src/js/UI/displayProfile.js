@@ -77,14 +77,21 @@ export async function displayProfilePage() {
           }
         );
 
-        const itemContentContainer = createElement("div", "ms-2 me-auto");
-        const headingItem = createElement("div", "fw-bold", item.title);
-        itemContentContainer.appendChild(headingItem);
-
-        const descriptionText = document.createTextNode(
-          `Description: ${item.description}`
+        const itemContentContainer = createElement(
+          "div",
+          "ms-2 d-flex flex-row-reverse"
         );
-        itemContentContainer.appendChild(descriptionText);
+
+        const headingAndDesc = createElement(
+          "div",
+          "heading-and-desc-container"
+        );
+        const headingItem = createElement("div", "fw-bold", item.title);
+        headingAndDesc.appendChild(headingItem);
+
+        const descriptionText = document.createTextNode(`${item.description}`);
+        headingAndDesc.appendChild(descriptionText);
+        itemContentContainer.appendChild(headingAndDesc);
 
         const imageGallery = createElement("div", "image-gallery");
 
@@ -95,6 +102,7 @@ export async function displayProfilePage() {
           src: imageUrl,
         });
         imageGallery.appendChild(img);
+        itemContentContainer.appendChild(imageGallery);
 
         const bidsCount = item._count ? item._count.bids : 0;
         const bidsBadge = createElement(
@@ -105,7 +113,6 @@ export async function displayProfilePage() {
 
         myAuctionItem.appendChild(itemContentContainer);
         myAuctionItem.appendChild(bidsBadge);
-        myAuctionItem.appendChild(imageGallery);
         myAuctionList.appendChild(myAuctionItem);
       });
       console.log(userAuctionItems);

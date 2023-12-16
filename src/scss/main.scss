@@ -9,6 +9,13 @@ body {
 .navbar {
   background-color: rgb(86, 67, 20);
 }
+.nav-item {
+  margin-right: 1rem;
+}
+
+.nav-item:last-child {
+  margin-right: 0px;
+}
 
 //Fonts
 
@@ -68,6 +75,7 @@ h1 {
 }
 
 .card {
+  cursor: pointer;
   border: 1px solid rgb(232, 232, 232);
   width: 100%;
   height: auto;
@@ -87,8 +95,6 @@ img {
   object-fit: cover;
 }
 
-//---------------
-
 //Search field
 
 #searchField,
@@ -96,11 +102,33 @@ img {
   border-radius: 0px;
 }
 
-//--------------
+// Profile
+
+.list-group-item {
+  flex-wrap: wrap-reverse;
+}
+
+.rounded-pill {
+  font-size: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-right: 1rem;
+}
+
 .profile-image {
+  object-fit: cover;
   height: 200px;
   width: 200px;
   border-radius: 50%;
+}
+
+.heading-and-desc-container {
+  padding-left: 1rem;
+  width: 200px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 
 .scroll {
@@ -143,4 +171,17 @@ img {
 
 .list-profile-page {
   cursor: pointer;
+}
+
+@media (max-width: 450px) {
+  .badge {
+    margin: 0px;
+  }
+
+  .rounded-pill {
+    font-size: 0.8rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
 }
