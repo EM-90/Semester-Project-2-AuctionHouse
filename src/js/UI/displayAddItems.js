@@ -14,10 +14,15 @@ export function displayAuctionItem() {
   const mainContentContainer = document.querySelector("#mainContent");
   mainContentContainer.innerHTML = "";
 
-  const formContainer = createElement("form", "m-3 add-item-form", null, {
-    method: "post",
-    id: "addItemForm",
-  });
+  const formContainer = createElement(
+    "form",
+    " col-4 m-3 add-item-form",
+    null,
+    {
+      method: "post",
+      id: "addItemForm",
+    }
+  );
 
   // Title Field
   const titleLabel = createElement("label", "form-label", "Title", {
@@ -33,7 +38,7 @@ export function displayAuctionItem() {
   const descriptionLabel = createElement("label", "form-label", "Description", {
     for: "description",
   });
-  const descriptionInput = createElement("input", "form-control", null, {
+  const descriptionInput = createElement("textarea", "form-control", null, {
     type: "text",
     name: "description",
     id: "description",
