@@ -38,7 +38,7 @@ export function displayHomePage() {
 
   const searchButton = createElement(
     "button",
-    "btn btn-outline-success",
+    "btn btn-outline-secondary",
     "Search",
     {
       id: "searchButton",

@@ -10719,8 +10719,94 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+body {
+  background-color: rgb(255, 255, 254);
+}
+
+.navbar {
+  background-color: rgb(86, 67, 20);
+}
+
+p,
+a,
+h1,
+.h1,
+h3,
+.h3,
+h2,
+.h2,
+h4,
+.h4,
+li {
+  font-family: "Poppins", sans-serif;
+}
+
+h1, .h1 {
+  font-weight: 700;
+  font-size: 3rem;
+  color: rgb(42, 32, 4);
+}
+
+.image-container {
+  width: 100%;
+  height: 400px;
+}
+
 .card-img-top {
-  max-height: 14rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 0px;
+}
+
+.card-body {
+  height: 285px;
+}
+
+.short {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 250px;
+}
+
+.light-font {
+  font-weight: 300;
+}
+
+.countdown-timer {
+  font-weight: 500;
+  font-size: 1.1rem;
+  color: red;
+}
+
+.badge {
+  background-color: rgb(18, 104, 91);
+  padding: 7px;
+}
+
+.card {
+  border: 1px solid rgb(232, 232, 232);
+  width: 100%;
+  height: auto;
+  border-radius: 0px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: rgb(255, 253, 248);
+}
+
+img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+#searchField,
+.btn-outline-secondary {
+  border-radius: 0px;
 }
 
 .profile-image {

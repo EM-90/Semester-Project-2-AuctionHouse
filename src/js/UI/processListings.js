@@ -1,14 +1,12 @@
 // processListings.js
-
 export async function processListings(listings) {
   const processSingleListing = (listing) => {
-    const defaultImage = "../../public/images/image-987-svgrepo-com.png";
-    const hasValidMedia =
-      listing.media &&
-      listing.media.length > 0 &&
-      typeof listing.media[0] === "string" &&
-      listing.media[0].trim() !== "";
-    const imageUrl = hasValidMedia ? listing.media[0] : defaultImage;
+    if (!Array.isArray(listing.media) || listing.media.length === 0) {
+      return null;
+    }
+
+    const imageUrl = listing.media[0];
+
     return {
       title: listing.title,
       imageUrl,
@@ -22,11 +20,9 @@ export async function processListings(listings) {
   };
 
   try {
-    if (Array.isArray(listings)) {
-      return listings.map(processSingleListing);
-    } else {
-      return processSingleListing(listings);
-    }
+    return Array.isArray(listings)
+      ? listings.map(processSingleListing).filter((listing) => listing !== null)
+      : processSingleListing(listings);
   } catch (error) {
     console.error("Error processing listings:", error);
     return [];

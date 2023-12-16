@@ -22,17 +22,22 @@ export function displayItem({
   const image = createElement("img", "card-img-top", null, {
     src: imageUrl,
     alt: altText,
+    onerror:
+      "this.onerror=null;this.src='../../public/images/image-987-svgrepo-com.png';",
   });
 
   const cardBody = createElement("div", "card-body ");
   const titleEl = createElement("h3", "title ", title);
-  const cardParagraph = createElement("p", "card-text ", description);
+  const cardParagraph = createElement("p", "card-text short", description);
   const creationDate = formatDateToDDMMYYYY(auctionStart);
   const createDateEl = createElement(
     "p",
-    "created-at",
+    "created-at light-font",
     `Created: ${creationDate}`
   );
+
+  const imageContainer = createElement("div", "image-container");
+  imageContainer.appendChild(image);
 
   // Tags
 
@@ -40,7 +45,7 @@ export function displayItem({
 
   tags.forEach((tag) => {
     if (tag) {
-      const tagElement = createElement("p", "badge bg-success me-2  ", tag);
+      const tagElement = createElement("p", "badge  me-2  ", tag);
       tagsContainer.appendChild(tagElement);
     }
   });
@@ -60,7 +65,7 @@ export function displayItem({
     cardParagraph,
     count
   );
-  cardDiv.appendChild(image);
+  cardDiv.appendChild(imageContainer);
   cardDiv.appendChild(cardBody);
   colDiv.appendChild(cardDiv);
 
