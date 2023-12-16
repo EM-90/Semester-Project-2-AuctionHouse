@@ -2,16 +2,25 @@ import { fetchFromApi } from "../api/crud/read.js";
 import { baseUrl } from "../api/urls/all-urls.js";
 import { displayItemDetails } from "../UI/auctionItemPage.js";
 
-export function ItemListener() {
-  const bootstrapRow = document.getElementById("bootstrapRow");
+export function ItemListener(containerId) {
+  const container = document.getElementById(containerId);
 
-  bootstrapRow.addEventListener("click", function (event) {
-    const clickedItem = event.target.closest(".card.interactive.searchable");
+  if (!container) {
+    console.error("Container not found:", containerId);
+    return;
+  }
+
+  container.addEventListener("click", function (event) {
+    const clickedItem = event.target.closest(
+      ".card.interactive.searchable, .list-group-item"
+    );
 
     if (clickedItem) {
       const itemId = clickedItem.getAttribute("data-item-id");
-      console.log("Card clicked, itemId:", itemId);
-      window.location.hash = `/item-page/${itemId}`;
+      if (itemId) {
+        console.log("Item clicked, itemId:", itemId);
+        window.location.hash = `/item-page/${itemId}`;
+      }
     }
   });
 }

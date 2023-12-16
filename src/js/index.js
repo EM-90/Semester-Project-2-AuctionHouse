@@ -35,11 +35,12 @@ export async function initHomePage() {
     const listingsData = await fetchListings(
       "?sort=created&sortOrder=desc&limit=100&_active=true"
     );
+    console.log("this is the listings data:", listingsData);
     const processedListings = await processListings(listingsData);
 
     displayMultipleItems(processedListings);
     searchBarFunction(processedListings);
-    ItemListener();
+    ItemListener("bootstrapRow");
     console.log("display listings");
   } catch (error) {
     console.error("Error initializing home page:", error);
@@ -57,7 +58,7 @@ export async function initProfilePage() {
   if (lastRoute === "profile") return;
   lastRoute = "profile";
   await displayProfilePage();
-  ItemListener();
+  ItemListener("profile-list");
 }
 
 export function addItemPage() {

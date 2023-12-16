@@ -2,11 +2,13 @@
 
 export async function processListings(listings) {
   const processSingleListing = (listing) => {
-    const defaultImage = "/public/images/image-987-svgrepo-com.png";
-    const imageUrl =
-      listing.media && listing.media.length > 0
-        ? listing.media[0]
-        : defaultImage;
+    const defaultImage = "../../public/images/image-987-svgrepo-com.png";
+    const hasValidMedia =
+      listing.media &&
+      listing.media.length > 0 &&
+      typeof listing.media[0] === "string" &&
+      listing.media[0].trim() !== "";
+    const imageUrl = hasValidMedia ? listing.media[0] : defaultImage;
     return {
       title: listing.title,
       imageUrl,

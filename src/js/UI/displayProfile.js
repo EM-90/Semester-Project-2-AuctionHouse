@@ -57,7 +57,10 @@ export async function displayProfilePage() {
 
   const myAuctionList = createElement(
     "ul",
-    "list-group list-profile-page mt-5"
+    "list-group list-profile-page mt-5",
+    null,
+    null,
+    "profile-list"
   );
 
   try {

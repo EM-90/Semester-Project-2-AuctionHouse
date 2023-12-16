@@ -43,9 +43,6 @@ export function displayItemDetails(itemDetails) {
       alt: "Default Image",
     });
 
-    if ((mainImageElement = 0)) {
-      thumbnailsContainer.style.display = "none";
-    }
     imageGallery.appendChild(mainImageElement);
   }
 
