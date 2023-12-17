@@ -162,5 +162,5 @@ export function displayItemDetails(itemDetails) {
   //thirdRow.appendChild(specificationsCol);
 
   // Append the third row to the main content
-  mainContent.appendChild(thirdRow);
+  //mainContent.appendChild(thirdRow);
 }
