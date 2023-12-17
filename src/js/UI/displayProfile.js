@@ -107,7 +107,7 @@ export async function displayProfilePage() {
         const bidsCount = item._count ? item._count.bids : 0;
         const bidsBadge = createElement(
           "span",
-          "badge bg-primary rounded-pill",
+          "badge bg-success rounded-pill",
           `${bidsCount} bids`
         );
 

@@ -36,28 +36,16 @@ export function displayHomePage() {
   });
   form.appendChild(input);
 
-  const searchButton = createElement(
+  const button = createElement(
     "button",
-    "btn btn-outline-secondary",
-    "Search",
+    "btn btn-light ms-2 lastChanceBtn",
+    "Last chance",
     {
-      id: "searchButton",
-      type: "submit",
+      type: "button",
     }
   );
-  form.appendChild(searchButton);
 
-  const addButton = (iconClass) => {
-    const button = createElement("button", "btn btn-light ms-2", null, {
-      type: "button",
-    });
-    const icon = createElement("i", iconClass);
-    button.appendChild(icon);
-    form.appendChild(button);
-  };
-
-  addButton("bi bi-sort-alpha-down");
-  addButton("bi bi-sort-alpha-up");
+  form.appendChild(button);
 
   mainContentContainer.appendChild(form);
 

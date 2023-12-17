@@ -16,3 +16,8 @@ export function loginSuccess() {
     loginMessageContainer.removeChild(loginMessage);
   }, 4000);
 }
+
+export function usernameTaken() {
+  const messageContainer = document.querySelector("register-message");
+  messageContainer.textContent = "Username is taken";
+}

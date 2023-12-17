@@ -1,13 +1,22 @@
+// My varables overrides
+
+$primary: rgb(6, 38, 141);
+
 @import "../../node_modules/bootstrap/scss/bootstrap";
 
 body {
   background-color: rgb(255, 255, 254);
 }
 
+.btn,
+.modal-content {
+  border-radius: 0px;
+}
+
 //Navbar
 
 .navbar {
-  background-color: rgb(86, 67, 20);
+  background-color: rgb(6, 38, 141);
 }
 .nav-item {
   margin-right: 1rem;
@@ -15,6 +24,10 @@ body {
 
 .nav-item:last-child {
   margin-right: 0px;
+}
+
+.lastChanceBtn {
+  white-space: nowrap;
 }
 
 //Fonts
@@ -25,14 +38,19 @@ h1,
 h3,
 h2,
 h4,
-li {
+li,
+.btn {
   font-family: "Poppins", sans-serif;
 }
 
 h1 {
-  font-weight: 700;
+  font-weight: 300;
   font-size: 3rem;
   color: rgb(42, 32, 4);
+}
+
+h1::first-letter {
+  font-weight: 600;
 }
 
 //Card
@@ -70,7 +88,7 @@ h1 {
 }
 
 .badge {
-  background-color: rgb(18, 104, 91);
+  background-color: rgb(27, 104, 181);
   padding: 7px;
 }
 
@@ -86,7 +104,7 @@ h1 {
 .card:hover {
   transform: scale(1.01);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: rgb(255, 253, 248);
+  background-color: rgb(255, 254, 250);
 }
 
 img {
@@ -98,14 +116,31 @@ img {
 //Search field
 
 #searchField,
-.btn-outline-secondary {
+.btn-light,
+.btn-btn-secondary {
   border-radius: 0px;
 }
 
-// Profile
+// Profile and item spcific page
 
 .list-group-item {
   flex-wrap: wrap-reverse;
+}
+
+.list-group-item:first-child {
+  border-radius: 0px;
+}
+
+.list-group-item:last-child {
+  border-radius: 0px;
+}
+
+.list-group:first-child {
+  border-radius: 0px;
+}
+
+.list-group:last-child {
+  border-radius: 0px;
 }
 
 .rounded-pill {

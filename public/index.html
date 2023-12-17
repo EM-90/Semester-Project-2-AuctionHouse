@@ -54,7 +54,7 @@
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Modal title</h5>
+            <h5 class="modal-title">Register new user</h5>
             <button
               type="button"
               class="btn-close"
@@ -62,9 +62,9 @@
               aria-label="Close"
             ></button>
           </div>
-          <form method="post" id="registerForm">
+          <form id="registerForm">
             <div class="modal-body">
-              <p>Modal body text goes here.</p>
+              <p class="register-message"></p>
               <div class="row">
                 <div class="col-md-6">
                   <div class="name-field my-3">
@@ -93,6 +93,10 @@
                       required
                       pattern="^[\w\-.]+@(stud\.)?noroff\.no$"
                     />
+                    <div id="emailHelpBlock" class="form-text">
+                      you need to have a @stud.noroff.no mail. Example
+                      rolf@stud.noroff.no
+                    </div>
                   </div>
                 </div>
               </div>
@@ -145,7 +149,7 @@
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
             <button
               type="button"
               class="btn-close"
@@ -156,7 +160,7 @@
 
           <form method="post" id="loginForm">
             <div class="modal-body">
-              <p>Modal body text goes here.</p>
+              <p class="login-message"></p>
 
               <div class="row">
                 <div class="col-md-6">

@@ -10,7 +10,11 @@ export function displayItemDetails(itemDetails) {
   // item details
   const firstRow = createElement("div", "row");
   const itemDetailsCol = createElement("div", "col-md-6");
-  const itemDetailsHeading = createElement("h2", null, "Item Details");
+  const itemDetailsHeading = createElement(
+    "h2",
+    "item-details mb-4",
+    "Item Details"
+  );
 
   // Card
   const cardDiv = createElement("div", "card-specific", null, {
@@ -53,7 +57,7 @@ export function displayItemDetails(itemDetails) {
   }
 
   const cardBody = createElement("div", "card-body");
-  const titleEl = createElement("h3", "title", itemDetails.title);
+  const titleEl = createElement("h3", "title mb-3 mt-5", itemDetails.title);
   const cardParagraph = createElement(
     "p",
     "card-text",
@@ -83,7 +87,11 @@ export function displayItemDetails(itemDetails) {
   // second row for auction details
 
   const auctionDetailsCol = createElement("div", "col-md-6");
-  const auctionDetailsHeading = createElement("h2", null, "Auction Details");
+  const auctionDetailsHeading = createElement(
+    "h2",
+    "auction-details mb-4",
+    "Auction Details"
+  );
 
   // The bid section of the page
   const bidForm = createElement("form", "bid-form", null, null, "bidForm");
@@ -147,11 +155,11 @@ export function displayItemDetails(itemDetails) {
   mainContent.appendChild(firstRow);
 
   // specifications
-  const thirdRow = createElement("div", "row");
-  const specificationsCol = createElement("div", "col-12");
-  const specificationsHeading = createElement("h2", null, "Specifications");
-  specificationsCol.appendChild(specificationsHeading);
-  thirdRow.appendChild(specificationsCol);
+  //const thirdRow = createElement("div", "row");
+  //const specificationsCol = createElement("div", "col-12");
+  //const specificationsHeading = createElement("h2", null, "Specifications");
+  //specificationsCol.appendChild(specificationsHeading);
+  //thirdRow.appendChild(specificationsCol);
 
   // Append the third row to the main content
   mainContent.appendChild(thirdRow);
