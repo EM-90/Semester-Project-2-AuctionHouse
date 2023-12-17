@@ -13,7 +13,8 @@ export async function addBidListener() {
     const bidAmount = Number(bidAmountValue);
 
     if (!isNaN(bidAmount) && bidAmount > 0) {
-      const itemId = document.querySelector(".card[data-item]")?.dataset.itemId;
+      const itemId = document.querySelector(".card-specific[data-item]")
+        ?.dataset.itemId;
       const newBid = { amount: bidAmount };
 
       try {
