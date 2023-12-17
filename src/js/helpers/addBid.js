@@ -20,6 +20,10 @@ export async function addBidListener() {
       try {
         const response = await addBid(itemId, newBid);
         console.log("Bid response:", response);
+
+        if (response && response.ok) {
+          window.location.reload();
+        }
       } catch (error) {
         console.error("Error placing bid:", error);
       }
